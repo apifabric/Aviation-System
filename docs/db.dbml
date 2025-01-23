@@ -4,116 +4,120 @@
 
 Project DBML {
   Note: '''
-Airplane: Represents the airplane details with attributes like model, airline, capacity, and manufacturer link.
-Manufacturer: Manufacturer details, including the name and originating country.
-Airport: This class represents an airport entity that includes basic attributes like name, location, construction year, and capacity.
-Assignment: An assignment connecting pilots to their flights.
-Flight: This class represents a flight entity, holding details about flight number, departure and arrival times, and the related airport.
-Pilot: Represents a pilot entity with basic information such as first and last name, and license number.
-Booking: Holds details about bookings connecting to tickets.
-Ticket: Information pertaining to a ticket entity including price, and link to passengers and flights.
-Gate: Details for gates at the airport and their location.
-Luggage: Represents luggage details associated with passengers.
-Passenger: Basic passenger data including name and passport number.
-Staff: Represents various staff members, their roles, and assigned airports.
+Aircraft: This table captures details of different aircrafts.
+AircraftMaintenance: This table logs maintenance details of aircraft.
+Airline: This table provides details about different airlines.
+Airport: information about the airports.
+AirportFacility: Records various facilities available at airpots.
+Baggage: baggage details for passengers.
+Passenger: the details of passengers.
+Booking: booking information.
+Flight: information about flights including departure and arrival details.
+CrewMember: This table consists of crew members working on flights.
+Pilot: This table contains information about pilots.
+PilotLicense: This table contains license details for pilots.
 '''
 }
 
-Table Airplane {
+Table Aircraft {
     id INTEGER [primary key]
-    airplane_model VARCHAR 
-    airline VARCHAR 
-    capacity INTEGER 
-    manufacturer_id INTEGER 
+    model VARCHAR 
+    seating_capacity INTEGER 
     }
 
-Table Manufacturer {
+Table AircraftMaintenance {
+    id INTEGER [primary key]
+    aircraft_id INTEGER 
+    date_of_maintenance DATE 
+    next_due_date DATE 
+    remarks VARCHAR 
+    }
+
+Table Airline {
     id INTEGER [primary key]
     name VARCHAR 
-    country VARCHAR 
+    code VARCHAR(3) 
     }
 
 Table Airport {
     id INTEGER [primary key]
     name VARCHAR 
     location VARCHAR 
-    construction_year INTEGER 
-    capacity INTEGER 
+    code VARCHAR(3) 
     }
 
-Table Assignment {
+Table AirportFacility {
     id INTEGER [primary key]
-    pilot_id INTEGER 
+    airport_id INTEGER 
+    facility_type VARCHAR 
+    description VARCHAR 
+    }
+
+Table Baggage {
+    id INTEGER [primary key]
+    passenger_id INTEGER 
+    weight INTEGER 
+    baggage_type VARCHAR 
+    }
+
+Table Passenger {
+    id INTEGER [primary key]
+    name VARCHAR 
+    passport_number VARCHAR 
+    birthdate DATE 
     flight_id INTEGER 
+    }
+
+Table Booking {
+    id INTEGER [primary key]
+    passenger_id INTEGER 
+    flight_id INTEGER 
+    status VARCHAR 
+    booking_date DATE 
     }
 
 Table Flight {
     id INTEGER [primary key]
     flight_number VARCHAR 
-    departure_time DATETIME 
-    arrival_time DATETIME 
-    airport_id INTEGER 
+    departure_airport_id INTEGER 
+    arrival_airport_id INTEGER 
+    scheduled_departure DATETIME 
+    scheduled_arrival DATETIME 
+    aircraft_id INTEGER 
+    }
+
+Table CrewMember {
+    id INTEGER [primary key]
+    name VARCHAR 
+    position VARCHAR 
+    flight_id INTEGER 
     }
 
 Table Pilot {
     id INTEGER [primary key]
-    first_name VARCHAR 
-    last_name VARCHAR 
+    name VARCHAR 
     license_number VARCHAR 
+    years_of_experience INTEGER 
     }
 
-Table Booking {
+Table PilotLicense {
     id INTEGER [primary key]
-    booking_number VARCHAR 
-    booking_date DATE 
-    ticket_id INTEGER 
-    }
-
-Table Ticket {
-    id INTEGER [primary key]
-    ticket_number VARCHAR 
-    price INTEGER 
-    passenger_id INTEGER 
-    flight_id INTEGER 
-    }
-
-Table Gate {
-    id INTEGER [primary key]
-    gate_number VARCHAR 
-    airport_id INTEGER 
-    }
-
-Table Luggage {
-    id INTEGER [primary key]
-    weight INTEGER 
-    passenger_id INTEGER 
-    }
-
-Table Passenger {
-    id INTEGER [primary key]
-    first_name VARCHAR 
-    last_name VARCHAR 
-    passport_number VARCHAR 
-    }
-
-Table Staff {
-    id INTEGER [primary key]
-    first_name VARCHAR 
-    last_name VARCHAR 
-    role VARCHAR 
-    airport_id INTEGER 
+    pilot_id INTEGER 
+    license_type VARCHAR 
+    expiry_date DATE 
     }
 
 
 
 // Relationships
-    Ref: Airplane.(manufacturer_id) < Manufacturer.(id)
-    Ref: Assignment.(flight_id) < Flight.(id)
-    Ref: Assignment.(pilot_id) < Pilot.(id)
-    Ref: Flight.(airport_id) < Airport.(id)
-    Ref: Booking.(ticket_id) < Ticket.(id)
-    Ref: Ticket.(flight_id) < Flight.(id)
-    Ref: Ticket.(passenger_id) < Passenger.(id)
-    Ref: Gate.(airport_id) < Airport.(id)
-    Ref: Luggage.(passenger_id) < Passenger.(id)
-    Ref: Staff.(airport_id) < Airport.(id)
+    Ref: AircraftMaintenance.(aircraft_id) < Aircraft.(id)
+    Ref: AirportFacility.(airport_id) < Airport.(id)
+    Ref: Baggage.(passenger_id) < Passenger.(id)
+    Ref: Passenger.(flight_id) < Flight.(id)
+    Ref: Booking.(flight_id) < Flight.(id)
+    Ref: Booking.(passenger_id) < Passenger.(id)
+    Ref: Flight.(aircraft_id) < Aircraft.(id)
+    Ref: Flight.(arrival_airport_id) < Airport.(id)
+    Ref: Flight.(departure_airport_id) < Airport.(id)
+    Ref: CrewMember.(flight_id) < Flight.(id)
+    Ref: PilotLicense.(pilot_id) < Pilot.(id)

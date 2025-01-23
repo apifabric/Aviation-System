@@ -1,0 +1,524 @@
+about:
+  date: January 23, 2025 09:39:07
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+entities:
+  Aircraft:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: model
+      template: text
+      type: VARCHAR
+    - name: seating_capacity
+      template: integer
+      type: INTEGER
+    description: This table captures details of different aircrafts.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    hidden: {}
+    home_template: home_template.html
+    info_list: This table captures details of different aircrafts.
+    label: Aircraft
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - aircraft_id
+      name: AircraftMaintenanceList
+      resource: AircraftMaintenance
+    - direction: tomany
+      fks:
+      - aircraft_id
+      name: FlightList
+      resource: Flight
+    type: Aircraft
+  AircraftMaintenance:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: aircraft_id
+      template: integer
+      type: INTEGER
+    - name: date_of_maintenance
+      type: DATE
+    - name: next_due_date
+      type: DATE
+    - name: remarks
+      template: text
+      type: VARCHAR
+    description: This table logs maintenance details of aircraft.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    hidden: {}
+    home_template: home_template.html
+    info_list: This table logs maintenance details of aircraft.
+    label: AircraftMaintenance
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - aircraft_id
+      name: aircraft
+      resource: Aircraft
+    type: AircraftMaintenance
+  Airline:
+    columns:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: code
+      template: text
+      type: VARCHAR(3)
+    - name: id
+      template: integer
+      type: INTEGER
+    description: This table provides details about different airlines.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    hidden: {}
+    home_template: home_template.html
+    info_list: This table provides details about different airlines.
+    label: Airline
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    type: Airline
+  Airport:
+    columns:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: location
+      template: text
+      type: VARCHAR
+    - name: code
+      template: text
+      type: VARCHAR(3)
+    - name: id
+      template: integer
+      type: INTEGER
+    description: This page shows information about the airports.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    hidden: {}
+    home_template: home_template.html
+    info_list: This page shows information about the airports.
+    label: Airport
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - airport_id
+      name: AirportFacilityList
+      resource: AirportFacility
+    - direction: tomany
+      fks:
+      - arrival_airport_id
+      name: FlightList
+      resource: Flight
+    - direction: tomany
+      fks:
+      - departure_airport_id
+      name: departureFlightList
+      resource: Flight
+    type: Airport
+  AirportFacility:
+    columns:
+    - label: ' description*'
+      name: description
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: airport_id
+      template: integer
+      type: INTEGER
+    - name: facility_type
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    description: Records various facilities available at airpots.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: description
+    hidden: {}
+    home_template: home_template.html
+    info_list: Records various facilities available at airpots.
+    label: AirportFacility
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - airport_id
+      name: airport
+      resource: Airport
+    type: AirportFacility
+  Baggage:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: passenger_id
+      template: integer
+      type: INTEGER
+    - name: weight
+      template: integer
+      type: INTEGER
+    - name: baggage_type
+      template: text
+      type: VARCHAR
+    description: This table records baggage details for passengers.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    hidden: {}
+    home_template: home_template.html
+    info_list: This table records baggage details for passengers.
+    label: Baggage
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - passenger_id
+      name: passenger
+      resource: Passenger
+    type: Baggage
+  Booking:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: flight_id
+      template: integer
+      type: INTEGER
+    - name: passenger_id
+      template: integer
+      type: INTEGER
+    - name: status
+      template: text
+      type: VARCHAR
+    - name: booking_date
+      type: DATE
+    description: This page shows booking information.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    hidden: {}
+    home_template: home_template.html
+    info_list: This page shows booking information.
+    label: Booking
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - flight_id
+      name: flight
+      resource: Flight
+    - direction: toone
+      fks:
+      - passenger_id
+      name: passenger
+      resource: Passenger
+    type: Booking
+  CrewMember:
+    columns:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: flight_id
+      template: integer
+      type: INTEGER
+    - name: position
+      template: text
+      type: VARCHAR
+    - name: id
+      template: integer
+      type: INTEGER
+    description: This table consists of crew members working on flights.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    hidden: {}
+    home_template: home_template.html
+    info_list: This table consists of crew members working on flights.
+    label: CrewMember
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - flight_id
+      name: flight
+      resource: Flight
+    type: CrewMember
+  Flight:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: aircraft_id
+      template: integer
+      type: INTEGER
+    - name: arrival_airport_id
+      template: integer
+      type: INTEGER
+    - name: departure_airport_id
+      template: integer
+      type: INTEGER
+    - name: flight_number
+      template: text
+      type: VARCHAR
+    - name: scheduled_departure
+      type: DATETIME
+    - name: scheduled_arrival
+      type: DATETIME
+    description: This page shows information about flights including departure and
+      arrival details.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    hidden: {}
+    home_template: home_template.html
+    info_list: This page shows information about flights including departure and arrival
+      details.
+    label: Flight
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - flight_id
+      name: BookingList
+      resource: Booking
+    - direction: tomany
+      fks:
+      - flight_id
+      name: CrewMemberList
+      resource: CrewMember
+    - direction: tomany
+      fks:
+      - flight_id
+      name: PassengerList
+      resource: Passenger
+    - direction: toone
+      fks:
+      - aircraft_id
+      name: aircraft
+      resource: Aircraft
+    - direction: toone
+      fks:
+      - arrival_airport_id
+      name: arrival_airport
+      resource: Airport
+    - direction: toone
+      fks:
+      - departure_airport_id
+      name: departure_airport
+      resource: Airport
+    type: Flight
+  Passenger:
+    columns:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: flight_id
+      template: integer
+      type: INTEGER
+    - name: passport_number
+      template: text
+      type: VARCHAR
+    - name: birthdate
+      type: DATE
+    - name: id
+      template: integer
+      type: INTEGER
+    description: This table records the details of passengers.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    hidden: {}
+    home_template: home_template.html
+    info_list: This table records the details of passengers.
+    label: Passenger
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - passenger_id
+      name: BaggageList
+      resource: Baggage
+    - direction: tomany
+      fks:
+      - passenger_id
+      name: BookingList
+      resource: Booking
+    - direction: toone
+      fks:
+      - flight_id
+      name: flight
+      resource: Flight
+    type: Passenger
+  Pilot:
+    columns:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR
+    - name: license_number
+      template: text
+      type: VARCHAR
+    - name: years_of_experience
+      template: integer
+      type: INTEGER
+    - name: id
+      template: integer
+      type: INTEGER
+    description: This table contains information about pilots.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: name
+    hidden: {}
+    home_template: home_template.html
+    info_list: This table contains information about pilots.
+    label: Pilot
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: tomany
+      fks:
+      - pilot_id
+      name: PilotLicenseList
+      resource: PilotLicense
+    type: Pilot
+  PilotLicense:
+    columns:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: pilot_id
+      template: integer
+      type: INTEGER
+    - name: license_type
+      template: text
+      type: VARCHAR
+    - name: expiry_date
+      type: DATE
+    description: This table contains license details for pilots.
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: id
+    hidden: {}
+    home_template: home_template.html
+    info_list: This table contains license details for pilots.
+    label: PilotLicense
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - id
+    tab_groups:
+    - direction: toone
+      fks:
+      - pilot_id
+      name: pilot
+      resource: Pilot
+    type: PilotLicense
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: false
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    mode: tab
+    pick_style: list
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: false

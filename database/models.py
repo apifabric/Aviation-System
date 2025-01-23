@@ -10,8 +10,8 @@ from sqlalchemy.ext.declarative import declarative_base
 # Alter this file per your database maintenance policy
 #    See https://apilogicserver.github.io/Docs/Project-Rebuild/#rebuilding
 #
-# Created:  January 23, 2025 09:34:14
-# Database: sqlite:////tmp/tmp.dxoG2uVy73-01JJ985D42M41MD4F79K9P5C3W/Aviation_System/database/db.sqlite
+# Created:  January 23, 2025 09:39:07
+# Database: sqlite:////tmp/tmp.uGaZDtBmSz/Aviation_System_iter_1/database/db.sqlite
 # Dialect:  sqlite
 #
 # mypy: ignore-errors
@@ -44,9 +44,45 @@ else:
 
 
 
+class Aircraft(Base):  # type: ignore
+    """
+    description: This table captures details of different aircrafts.
+    """
+    __tablename__ = 'aircraft'
+    _s_collection_name = 'Aircraft'  # type: ignore
+
+    id = Column(Integer, primary_key=True)
+    model = Column(String)
+    seating_capacity = Column(Integer)
+
+    # parent relationships (access parent)
+
+    # child relationships (access children)
+    AircraftMaintenanceList : Mapped[List["AircraftMaintenance"]] = relationship(back_populates="aircraft")
+    FlightList : Mapped[List["Flight"]] = relationship(back_populates="aircraft")
+
+
+
+class Airline(Base):  # type: ignore
+    """
+    description: This table provides details about different airlines.
+    """
+    __tablename__ = 'airline'
+    _s_collection_name = 'Airline'  # type: ignore
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    code = Column(String(3))
+
+    # parent relationships (access parent)
+
+    # child relationships (access children)
+
+
+
 class Airport(Base):  # type: ignore
     """
-    description: This class represents an airport entity that includes basic attributes like name, location, construction year, and capacity.
+    description: This table stores information about the airports.
     """
     __tablename__ = 'airport'
     _s_collection_name = 'Airport'  # type: ignore
@@ -54,90 +90,70 @@ class Airport(Base):  # type: ignore
     id = Column(Integer, primary_key=True)
     name = Column(String)
     location = Column(String)
-    construction_year = Column(Integer)
-    capacity = Column(Integer)
+    code = Column(String(3))
 
     # parent relationships (access parent)
 
     # child relationships (access children)
-    FlightList : Mapped[List["Flight"]] = relationship(back_populates="airport")
-    GateList : Mapped[List["Gate"]] = relationship(back_populates="airport")
-    StaffList : Mapped[List["Staff"]] = relationship(back_populates="airport")
-
-
-
-class Manufacturer(Base):  # type: ignore
-    """
-    description: Manufacturer details, including the name and originating country.
-    """
-    __tablename__ = 'manufacturer'
-    _s_collection_name = 'Manufacturer'  # type: ignore
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    country = Column(String)
-
-    # parent relationships (access parent)
-
-    # child relationships (access children)
-    AirplaneList : Mapped[List["Airplane"]] = relationship(back_populates="manufacturer")
-
-
-
-class Passenger(Base):  # type: ignore
-    """
-    description: Basic passenger data including name and passport number.
-    """
-    __tablename__ = 'passenger'
-    _s_collection_name = 'Passenger'  # type: ignore
-
-    id = Column(Integer, primary_key=True)
-    first_name = Column(String)
-    last_name = Column(String)
-    passport_number = Column(String)
-
-    # parent relationships (access parent)
-
-    # child relationships (access children)
-    LuggageList : Mapped[List["Luggage"]] = relationship(back_populates="passenger")
-    TicketList : Mapped[List["Ticket"]] = relationship(back_populates="passenger")
+    AirportFacilityList : Mapped[List["AirportFacility"]] = relationship(back_populates="airport")
+    FlightList : Mapped[List["Flight"]] = relationship(foreign_keys='[Flight.arrival_airport_id]', back_populates="arrival_airport")
+    departureFlightList : Mapped[List["Flight"]] = relationship(foreign_keys='[Flight.departure_airport_id]', back_populates="departure_airport")
 
 
 
 class Pilot(Base):  # type: ignore
     """
-    description: Represents a pilot entity with basic information such as first and last name, and license number.
+    description: This table contains information about pilots.
     """
     __tablename__ = 'pilot'
     _s_collection_name = 'Pilot'  # type: ignore
 
     id = Column(Integer, primary_key=True)
-    first_name = Column(String)
-    last_name = Column(String)
+    name = Column(String)
     license_number = Column(String)
+    years_of_experience = Column(Integer)
 
     # parent relationships (access parent)
 
     # child relationships (access children)
-    AssignmentList : Mapped[List["Assignment"]] = relationship(back_populates="pilot")
+    PilotLicenseList : Mapped[List["PilotLicense"]] = relationship(back_populates="pilot")
 
 
 
-class Airplane(Base):  # type: ignore
+class AircraftMaintenance(Base):  # type: ignore
     """
-    description: Represents the airplane details with attributes like model, airline, capacity, and manufacturer link.
+    description: This table logs maintenance details of aircraft.
     """
-    __tablename__ = 'airplane'
-    _s_collection_name = 'Airplane'  # type: ignore
+    __tablename__ = 'aircraft_maintenance'
+    _s_collection_name = 'AircraftMaintenance'  # type: ignore
 
     id = Column(Integer, primary_key=True)
-    airplane_model = Column(String)
-    airline = Column(String)
-    capacity = Column(Integer)
-    manufacturer_id = Column(ForeignKey('manufacturer.id'))
+    aircraft_id = Column(ForeignKey('aircraft.id'))
+    date_of_maintenance = Column(Date)
+    next_due_date = Column(Date)
+    remarks = Column(String)
 
     # parent relationships (access parent)
-    manufacturer : Mapped["Manufacturer"] = relationship(back_populates=("AirplaneList"))
+    aircraft : Mapped["Aircraft"] = relationship(back_populates=("AircraftMaintenanceList"))
+
+    # child relationships (access children)
+
+
+
+class AirportFacility(Base):  # type: ignore
+    """
+    description: Records various facilities available at airpots.
+    """
+    __tablename__ = 'airport_facility'
+    _s_collection_name = 'AirportFacility'  # type: ignore
+
+    id = Column(Integer, primary_key=True)
+    airport_id = Column(ForeignKey('airport.id'))
+    facility_type = Column(String)
+    description = Column(String)
+
+    # parent relationships (access parent)
+    airport : Mapped["Airport"] = relationship(back_populates=("AirportFacilityList"))
 
     # child relationships (access children)
 
@@ -145,136 +161,125 @@ class Airplane(Base):  # type: ignore
 
 class Flight(Base):  # type: ignore
     """
-    description: This class represents a flight entity, holding details about flight number, departure and arrival times, and the related airport.
+    description: This table stores information about flights including departure and arrival details.
     """
     __tablename__ = 'flight'
     _s_collection_name = 'Flight'  # type: ignore
 
     id = Column(Integer, primary_key=True)
     flight_number = Column(String)
-    departure_time = Column(DateTime)
-    arrival_time = Column(DateTime)
-    airport_id = Column(ForeignKey('airport.id'))
+    departure_airport_id = Column(ForeignKey('airport.id'))
+    arrival_airport_id = Column(ForeignKey('airport.id'))
+    scheduled_departure = Column(DateTime)
+    scheduled_arrival = Column(DateTime)
+    aircraft_id = Column(ForeignKey('aircraft.id'))
 
     # parent relationships (access parent)
-    airport : Mapped["Airport"] = relationship(back_populates=("FlightList"))
+    aircraft : Mapped["Aircraft"] = relationship(back_populates=("FlightList"))
+    arrival_airport : Mapped["Airport"] = relationship(foreign_keys='[Flight.arrival_airport_id]', back_populates=("FlightList"))
+    departure_airport : Mapped["Airport"] = relationship(foreign_keys='[Flight.departure_airport_id]', back_populates=("departureFlightList"))
 
     # child relationships (access children)
-    AssignmentList : Mapped[List["Assignment"]] = relationship(back_populates="flight")
-    TicketList : Mapped[List["Ticket"]] = relationship(back_populates="flight")
+    CrewMemberList : Mapped[List["CrewMember"]] = relationship(back_populates="flight")
+    PassengerList : Mapped[List["Passenger"]] = relationship(back_populates="flight")
+    BookingList : Mapped[List["Booking"]] = relationship(back_populates="flight")
 
 
 
-class Gate(Base):  # type: ignore
+class PilotLicense(Base):  # type: ignore
     """
-    description: Details for gates at the airport and their location.
+    description: This table contains license details for pilots.
     """
-    __tablename__ = 'gate'
-    _s_collection_name = 'Gate'  # type: ignore
-
-    id = Column(Integer, primary_key=True)
-    gate_number = Column(String)
-    airport_id = Column(ForeignKey('airport.id'))
-
-    # parent relationships (access parent)
-    airport : Mapped["Airport"] = relationship(back_populates=("GateList"))
-
-    # child relationships (access children)
-
-
-
-class Luggage(Base):  # type: ignore
-    """
-    description: Represents luggage details associated with passengers.
-    """
-    __tablename__ = 'luggage'
-    _s_collection_name = 'Luggage'  # type: ignore
-
-    id = Column(Integer, primary_key=True)
-    weight = Column(Integer)
-    passenger_id = Column(ForeignKey('passenger.id'))
-
-    # parent relationships (access parent)
-    passenger : Mapped["Passenger"] = relationship(back_populates=("LuggageList"))
-
-    # child relationships (access children)
-
-
-
-class Staff(Base):  # type: ignore
-    """
-    description: Represents various staff members, their roles, and assigned airports.
-    """
-    __tablename__ = 'staff'
-    _s_collection_name = 'Staff'  # type: ignore
-
-    id = Column(Integer, primary_key=True)
-    first_name = Column(String)
-    last_name = Column(String)
-    role = Column(String)
-    airport_id = Column(ForeignKey('airport.id'))
-
-    # parent relationships (access parent)
-    airport : Mapped["Airport"] = relationship(back_populates=("StaffList"))
-
-    # child relationships (access children)
-
-
-
-class Assignment(Base):  # type: ignore
-    """
-    description: An assignment connecting pilots to their flights.
-    """
-    __tablename__ = 'assignment'
-    _s_collection_name = 'Assignment'  # type: ignore
+    __tablename__ = 'pilot_license'
+    _s_collection_name = 'PilotLicense'  # type: ignore
 
     id = Column(Integer, primary_key=True)
     pilot_id = Column(ForeignKey('pilot.id'))
-    flight_id = Column(ForeignKey('flight.id'))
+    license_type = Column(String)
+    expiry_date = Column(Date)
 
     # parent relationships (access parent)
-    flight : Mapped["Flight"] = relationship(back_populates=("AssignmentList"))
-    pilot : Mapped["Pilot"] = relationship(back_populates=("AssignmentList"))
+    pilot : Mapped["Pilot"] = relationship(back_populates=("PilotLicenseList"))
 
     # child relationships (access children)
 
 
 
-class Ticket(Base):  # type: ignore
+class CrewMember(Base):  # type: ignore
     """
-    description: Information pertaining to a ticket entity including price, and link to passengers and flights.
+    description: This table consists of crew members working on flights.
     """
-    __tablename__ = 'ticket'
-    _s_collection_name = 'Ticket'  # type: ignore
+    __tablename__ = 'crew_member'
+    _s_collection_name = 'CrewMember'  # type: ignore
 
     id = Column(Integer, primary_key=True)
-    ticket_number = Column(String)
-    price = Column(Integer)
-    passenger_id = Column(ForeignKey('passenger.id'))
+    name = Column(String)
+    position = Column(String)
     flight_id = Column(ForeignKey('flight.id'))
 
     # parent relationships (access parent)
-    flight : Mapped["Flight"] = relationship(back_populates=("TicketList"))
-    passenger : Mapped["Passenger"] = relationship(back_populates=("TicketList"))
+    flight : Mapped["Flight"] = relationship(back_populates=("CrewMemberList"))
 
     # child relationships (access children)
-    BookingList : Mapped[List["Booking"]] = relationship(back_populates="ticket")
+
+
+
+class Passenger(Base):  # type: ignore
+    """
+    description: This table records the details of passengers.
+    """
+    __tablename__ = 'passenger'
+    _s_collection_name = 'Passenger'  # type: ignore
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    passport_number = Column(String)
+    birthdate = Column(Date)
+    flight_id = Column(ForeignKey('flight.id'))
+
+    # parent relationships (access parent)
+    flight : Mapped["Flight"] = relationship(back_populates=("PassengerList"))
+
+    # child relationships (access children)
+    BaggageList : Mapped[List["Baggage"]] = relationship(back_populates="passenger")
+    BookingList : Mapped[List["Booking"]] = relationship(back_populates="passenger")
+
+
+
+class Baggage(Base):  # type: ignore
+    """
+    description: This table records baggage details for passengers.
+    """
+    __tablename__ = 'baggage'
+    _s_collection_name = 'Baggage'  # type: ignore
+
+    id = Column(Integer, primary_key=True)
+    passenger_id = Column(ForeignKey('passenger.id'))
+    weight = Column(Integer)
+    baggage_type = Column(String)
+
+    # parent relationships (access parent)
+    passenger : Mapped["Passenger"] = relationship(back_populates=("BaggageList"))
+
+    # child relationships (access children)
 
 
 
 class Booking(Base):  # type: ignore
     """
-    description: Holds details about bookings connecting to tickets.
+    description: This table stores booking information.
     """
     __tablename__ = 'booking'
     _s_collection_name = 'Booking'  # type: ignore
 
     id = Column(Integer, primary_key=True)
-    booking_number = Column(String)
+    passenger_id = Column(ForeignKey('passenger.id'))
+    flight_id = Column(ForeignKey('flight.id'))
+    status = Column(String)
     booking_date = Column(Date)
-    ticket_id = Column(ForeignKey('ticket.id'))
 
     # parent relationships (access parent)
-    ticket : Mapped["Ticket"] = relationship(back_populates=("BookingList"))
+    flight : Mapped["Flight"] = relationship(back_populates=("BookingList"))
+    passenger : Mapped["Passenger"] = relationship(back_populates=("BookingList"))
 
     # child relationships (access children)

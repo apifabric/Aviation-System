@@ -1,0 +1,41 @@
+<o-form #AircraftMaintenanceForm attr="AircraftMaintenance_form_insert" service="AircraftMaintenance" entity="AircraftMaintenance" 
+keys="id" fxLayout="column" show-header="yes" header-actions="I"
+horizontal-scroll="yes"
+after-insert-mode="new" class="standalone-form-container" (onInsertMode)="onInsertMode()">
+
+<o-row attr="row1" layout-align="start stretch">
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+    
+        <o-integer-input #id attr="id" label=" id*" type="integer" editable="no" required="no" ></o-integer-input>
+      
+        <o-list-picker 
+        attr="aircraft_id"
+        service="Aircraft" 
+        entity="AircraftType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="id" 
+        value-column-type="INTEGER"  
+        keys="id" 
+        columns="id;aircraft_id;id" 
+        title="aircraft_id"
+        visible-columns="id;id" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-date-input #date_of_maintenance attr="date_of_maintenance" type="date" label="date_of_maintenance" enabled="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+      
+        <o-date-input #next_due_date attr="next_due_date" type="date" label="next_due_date" enabled="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+      
+        <o-text-input #remarks attr="remarks" label="remarks" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+</div>
+</o-row>
+
+<div layout-padding></div>
+
+</o-form>

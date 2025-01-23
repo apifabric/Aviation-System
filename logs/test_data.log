@@ -1,0 +1,206 @@
+INFO:response2code:Loading GPT response from system/genai/temp/response.json
+INFO:response2code:Successfully wrote test data code to database/test_data/test_data_code.py
+..  logic_logger: <Logger logic_logger (DEBUG)>
+..  db_url: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/test_data/db.sqlite
+..  cwd: /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
+..  python_loc: /usr/local/bin/python
+..  test_data_loader version: 1.1
+config.py - security disabled
+config.py - SQLALCHEMY_DATABASE_URI_AUTHENTICATION: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/authentication_db.sqlite
+
+Loading rules from /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules
+01JJ98C974B461Y5G2H0AVHFDC rule file: logic/wg_rules/Ticket_Price_Constraint.py
+[32mLoading Rule Module Ticket_Price_Constraint 01JJ98C974B461Y5G2H0AVHFDC [0m
+name 'Ticket' is not defined
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 174, in load_active_rules
+    rule_module.init_rule()
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+    Rule.constraint(validate=Ticket,
+                             ^^^^^^
+NameError: name 'Ticket' is not defined
+[31mFailed to load active rule 01JJ98C974B461Y5G2H0AVHFDC Rule.constraint(validate=Ticket,
+                as_condition=lambda row: row.price > 0,
+                error_msg="Ticket price ({row.price}) must be greater than zero") [0m
+Traceback (most recent call last):
+  File "/opt/webgenai/database/manager.py", line 330, in <module>
+    cli()
+  File "/usr/local/lib/python3.12/site-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/webgenai/database/manager.py", line 258, in cli
+    report_rule_error(rule, rule_error, session)
+  File "/opt/webgenai/database/mgr_util/__init__.py", line 30, in report_rule_error
+    rule = session.get(Rule, rule_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3543, in get
+    return self._get_impl(
+           ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 3675, in _get_impl
+    return db_load_fn(
+           ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/loading.py", line 668, in load_on_pk_identity
+    session.execute(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2232, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2127, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1413, in execute
+    return meth(
+           ^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 483, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1629, in _execute_clauseelement
+    compiled_sql, extracted_params, cache_hit = elem._compile_w_cache(
+                                                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 671, in _compile_w_cache
+    compiled_sql = self._compiler(
+                   ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 288, in _compiler
+    return dialect.statement_compiler(dialect, self, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 1426, in __init__
+    Compiled.__init__(self, dialect, statement, **kwargs)
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 867, in __init__
+    self.string = self.process(self.statement, **compile_kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 912, in process
+    return obj._compiler_dispatch(self, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/visitors.py", line 143, in _compiler_dispatch
+    return meth(self, **kw)  # type: ignore  # noqa: E501
+           ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/compiler.py", line 4592, in visit_select
+    compile_state = select_stmt._compile_state_factory(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/base.py", line 678, in create_for_statement
+    return klass.create_for_statement(statement, compiler, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 1081, in create_for_statement
+    _QueryEntity.to_compile_state(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 2527, in to_compile_state
+    _MapperEntity(
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 2607, in __init__
+    entity._post_inspect
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 1257, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+                                           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/mapper.py", line 2681, in _post_inspect
+    self._check_configure()
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/mapper.py", line 2362, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/mapper.py", line 4177, in _configure_registries
+    _do_configure_registries(registries, cascade)
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/mapper.py", line 4219, in _do_configure_registries
+    mapper._post_configure_properties()
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/mapper.py", line 2379, in _post_configure_properties
+    prop.init()
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/interfaces.py", line 549, in init
+    self.do_init()
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/relationships.py", line 1636, in do_init
+    self._setup_join_conditions()
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/relationships.py", line 1883, in _setup_join_conditions
+    self._join_condition = jc = JoinCondition(
+                                ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/relationships.py", line 2310, in __init__
+    self._determine_joins()
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/orm/relationships.py", line 2423, in _determine_joins
+    self.primaryjoin = join_condition(
+                       ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/util.py", line 123, in join_condition
+    return Join._join_condition(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/selectable.py", line 1343, in _join_condition
+    constraints = cls._joincond_scan_left_right(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/selectable.py", line 1452, in _joincond_scan_left_right
+    col = fk.get_referent(b)
+          ^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 3014, in get_referent
+    return table.columns.corresponding_column(self.column)  # type: ignore
+                                              ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 1141, in __get__
+    obj.__dict__[self.__name__] = result = self.fget(obj)
+                                           ^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 3151, in column
+    return self._resolve_column()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 3175, in _resolve_column
+    raise exc.NoReferencedTableError(
+sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'projects.user_id' could not find table 'users' with which to generate a foreign key to target column 'id'
+Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 174, in load_active_rules
+    rule_module.init_rule()
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+    Rule.constraint(validate=Ticket,
+                             ^^^^^^
+NameError: name 'Ticket' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 209, in load_verify_rules
+    load_active_rules(rule_code_dir, rules)
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 178, in load_active_rules
+    set_rule_error(rule["id"], f"{type(exc).__name__}: {exc}")
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 60, in set_rule_error
+    subprocess.check_output([
+  File "/usr/local/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.
+[31mFailed to load active exported rules: Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.[0m
+
+The following rules have been loaded
+Rule Bank[0x7d3f901ad2b0] (loaded 2025-01-23 09:39:12.353384)
+
+The following attributes have been referenced
+
+Error creating engine: LBActivateException: 
+[NameError("name 'Ticket' is not defined")]
+[]
+LogicBank Activation Error
+*** Models.py Using TestBase ***
+..  db_url: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/test_data/db.sqlite
+..  cwd: /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
+..  python_loc: /usr/local/bin/python
+..  test_data_loader version: 1.1
+Error creating engine: LBActivateException: 
+[NameError("name 'Ticket' is not defined")]
+[]
+LogicBank Activation Error
+..  db_url: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/test_data/db.sqlite
+..  cwd: /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
+..  python_loc: /usr/local/bin/python
+..  test_data_loader version: 1.1
+Error creating engine: LBActivateException: 
+[NameError("name 'Ticket' is not defined")]
+[]
+LogicBank Activation Error
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/test_data/test_data_code.py", line 63, in <module>
+    LogicBank.activate(session=session, activator=declare_logic.declare_logic)
+  File "/usr/local/lib/python3.12/site-packages/logic_bank/logic_bank.py", line 149, in activate
+    raise LBActivateException(rule_bank.invalid_rules, missing_attributes)
+logic_bank.exceptions.LBActivateException: LBActivateException: 
+[NameError("name 'Ticket' is not defined")]
+[]
+LogicBank Activation Error

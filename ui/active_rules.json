@@ -1,0 +1,8 @@
+[
+    {
+        "code": "Rule.constraint(validate=Ticket,\n                as_condition=lambda row: row.price > 0,\n                error_msg=\"Ticket price ({row.price}) must be greater than zero\")",
+        "description": "Ensure ticket prices are above a reasonable threshold.",
+        "name": "Ticket Price Constraint",
+        "use_case": "Ticket's price must be greater than a threshold to be valid."
+    }
+]

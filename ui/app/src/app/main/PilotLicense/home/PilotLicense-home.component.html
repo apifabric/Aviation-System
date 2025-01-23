@@ -1,0 +1,44 @@
+<o-form-layout-manager attr="PilotLicense" mode="tab" title="PILOTLICENSE">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="PilotLicenseTable" 
+            service="PilotLicense" 
+            entity="PilotLicense" 
+            title="PILOTLICENSE"
+            keys="id"
+            columns="id;pilot_id;license_type;expiry_date" 
+            header-actions="R;D"
+            visible-columns="id;pilot_id;license_type;expiry_date"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="pilot_id" title="pilot_id">
+    <o-table-cell-renderer-service attr="pilot_id" 
+        service="Pilot" entity="PilotType" columns="id;name"
+        parent-keys="id:pilot_id"
+        value-column="name" keys="pilot_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column #license_type attr="license_type" title="license_type" editable="no" required="no" content-align="left"></o-table-column>
+            
+            <o-date-input #expiry_date attr="expiry_date" type="date" label="expiry_date" enabled="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

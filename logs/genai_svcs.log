@@ -1,0 +1,255 @@
+2025-01-23 09:00:09,583 - api_logic_server_cli.genai.genai_svcs - INFO - .. saved request: /opt/projects/by-ulid/01JJ72MVWZY17E4D284QZFAYGA/docs/logic_suggestions/request.json
+2025-01-23 09:01:02,307 - api_logic_server_cli.genai.genai_svcs - INFO - ChatGPT (52 secs) - response at: system/genai/temp/chatgpt_original.response
+2025-01-23 09:01:02,315 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. call_chatgpt saved response: /opt/projects/by-ulid/01JJ72MVWZY17E4D284QZFAYGA/docs/logic_suggestions/response.json
+2025-01-23 09:01:16,148 - api_logic_server_cli.genai.genai_svcs - INFO - .. saved request: /opt/projects/by-ulid/01JJ72MVWZY17E4D284QZFAYGA/docs/logic_suggestions/request.json
+2025-01-23 09:01:58,409 - api_logic_server_cli.genai.genai_svcs - INFO - ChatGPT (42 secs) - response at: system/genai/temp/chatgpt_original.response
+2025-01-23 09:01:58,419 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. call_chatgpt saved response: /opt/projects/by-ulid/01JJ72MVWZY17E4D284QZFAYGA/docs/logic_suggestions/response.json
+2025-01-23 09:33:51,026 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. inserted explicit test data: Create 4 rows of test data for each table, and follow these guidelines carefully:
+2025-01-23 09:33:51,027 - api_logic_server_cli.genai.genai_svcs - INFO - .. saved request: system/genai/temp/request.json
+2025-01-23 09:34:14,436 - api_logic_server_cli.genai.genai_svcs - INFO - ChatGPT (23 secs) - response at: system/genai/temp/chatgpt_original.response
+2025-01-23 09:34:14,444 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. call_chatgpt saved response: system/genai/temp/response.json
+2025-01-23 09:34:14,445 - api_logic_server_cli.genai.genai_svcs - INFO - add description to airport: This class represents an airport entity that includes basic attributes like name, location, construction year, and capacity.
+2025-01-23 09:34:14,446 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: airport: class Airport(Base):
+    """description: This class represents an airport entity that includes basic attributes like name, location, construction year, and capacity."""
+    __tablename__ = 'airport'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    location = Column(String)
+    construction_year = Column(Integer)
+    capacity = Column(Integer)
+
+2025-01-23 09:34:14,446 - api_logic_server_cli.genai.genai_svcs - INFO - add description to flight: This class represents a flight entity, holding details about flight number, departure and arrival times, and the related airport.
+2025-01-23 09:34:14,446 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: flight: class Flight(Base):
+    """description: This class represents a flight entity, holding details about flight number, departure and arrival times, and the related airport."""
+    __tablename__ = 'flight'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    flight_number = Column(String)
+    departure_time = Column(DateTime)
+    arrival_time = Column(DateTime)
+    airport_id = Column(Integer, ForeignKey('airport.id'))
+
+2025-01-23 09:34:14,446 - api_logic_server_cli.genai.genai_svcs - INFO - add description to airplane: Represents the airplane details with attributes like model, airline, capacity, and manufacturer link.
+2025-01-23 09:34:14,447 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: airplane: class Airplane(Base):
+    """description: Represents the airplane details with attributes like model, airline, capacity, and manufacturer link."""
+    __tablename__ = 'airplane'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    airplane_model = Column(String)
+    airline = Column(String)
+    capacity = Column(Integer)
+    manufacturer_id = Column(Integer, ForeignKey('manufacturer.id'))
+
+2025-01-23 09:34:14,447 - api_logic_server_cli.genai.genai_svcs - INFO - add description to manufacturer: Manufacturer details, including the name and originating country.
+2025-01-23 09:34:14,447 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: manufacturer: class Manufacturer(Base):
+    """description: Manufacturer details, including the name and originating country."""
+    __tablename__ = 'manufacturer'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    country = Column(String)
+
+2025-01-23 09:34:14,447 - api_logic_server_cli.genai.genai_svcs - INFO - add description to pilot: Represents a pilot entity with basic information such as first and last name, and license number.
+2025-01-23 09:34:14,448 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: pilot: class Pilot(Base):
+    """description: Represents a pilot entity with basic information such as first and last name, and license number."""
+    __tablename__ = 'pilot'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    first_name = Column(String)
+    last_name = Column(String)
+    license_number = Column(String)
+
+2025-01-23 09:34:14,448 - api_logic_server_cli.genai.genai_svcs - INFO - add description to assignment: An assignment connecting pilots to their flights.
+2025-01-23 09:34:14,449 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: assignment: class Assignment(Base):
+    """description: An assignment connecting pilots to their flights."""
+    __tablename__ = 'assignment'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    pilot_id = Column(Integer, ForeignKey('pilot.id'))
+    flight_id = Column(Integer, ForeignKey('flight.id'))
+
+2025-01-23 09:34:14,449 - api_logic_server_cli.genai.genai_svcs - INFO - add description to staff: Represents various staff members, their roles, and assigned airports.
+2025-01-23 09:34:14,449 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: staff: class Staff(Base):
+    """description: Represents various staff members, their roles, and assigned airports."""
+    __tablename__ = 'staff'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    first_name = Column(String)
+    last_name = Column(String)
+    role = Column(String)
+    airport_id = Column(Integer, ForeignKey('airport.id'))
+
+2025-01-23 09:34:14,449 - api_logic_server_cli.genai.genai_svcs - INFO - add description to passenger: Basic passenger data including name and passport number.
+2025-01-23 09:34:14,450 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: passenger: class Passenger(Base):
+    """description: Basic passenger data including name and passport number."""
+    __tablename__ = 'passenger'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    first_name = Column(String)
+    last_name = Column(String)
+    passport_number = Column(String)
+
+2025-01-23 09:34:14,450 - api_logic_server_cli.genai.genai_svcs - INFO - add description to ticket: Information pertaining to a ticket entity including price, and link to passengers and flights.
+2025-01-23 09:34:14,451 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: ticket: class Ticket(Base):
+    """description: Information pertaining to a ticket entity including price, and link to passengers and flights."""
+    __tablename__ = 'ticket'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    ticket_number = Column(String)
+    price = Column(Integer)
+    passenger_id = Column(Integer, ForeignKey('passenger.id'))
+    flight_id = Column(Integer, ForeignKey('flight.id'))
+
+2025-01-23 09:34:14,451 - api_logic_server_cli.genai.genai_svcs - INFO - add description to booking: Holds details about bookings connecting to tickets.
+2025-01-23 09:34:14,451 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: booking: class Booking(Base):
+    """description: Holds details about bookings connecting to tickets."""
+    __tablename__ = 'booking'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    booking_number = Column(String)
+    booking_date = Column(Date)
+    ticket_id = Column(Integer, ForeignKey('ticket.id'))
+
+2025-01-23 09:34:14,451 - api_logic_server_cli.genai.genai_svcs - INFO - add description to luggage: Represents luggage details associated with passengers.
+2025-01-23 09:34:14,452 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: luggage: class Luggage(Base):
+    """description: Represents luggage details associated with passengers."""
+    __tablename__ = 'luggage'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    weight = Column(Integer)
+    passenger_id = Column(Integer, ForeignKey('passenger.id'))
+
+2025-01-23 09:34:14,452 - api_logic_server_cli.genai.genai_svcs - INFO - add description to gate: Details for gates at the airport and their location.
+2025-01-23 09:34:14,452 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: gate: class Gate(Base):
+    """description: Details for gates at the airport and their location."""
+    __tablename__ = 'gate'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    gate_number = Column(String)
+    airport_id = Column(Integer, ForeignKey('airport.id'))
+
+2025-01-23 09:34:14,453 - api_logic_server_cli.genai.genai_svcs - DEBUG - .... test_data_rows: 8
+2025-01-23 09:34:14,453 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. code for db creation and test data: system/genai/temp/create_db_models.py
+2025-01-23 09:36:04,958 - api_logic_server_cli.genai.genai_svcs - INFO - .. saved request: /opt/projects/by-ulid/01JJ985D42M41MD4F79K9P5C3W/docs/logic_suggestions/request.json
+2025-01-23 09:36:54,110 - api_logic_server_cli.genai.genai_svcs - INFO - ChatGPT (49 secs) - response at: system/genai/temp/chatgpt_original.response
+2025-01-23 09:36:54,130 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. call_chatgpt saved response: /opt/projects/by-ulid/01JJ985D42M41MD4F79K9P5C3W/docs/logic_suggestions/response.json
+2025-01-23 09:37:33,889 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. iteration inserted: Update the prior response
+2025-01-23 09:37:33,889 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. inserted explicit test data: Create 4 rows of test data for each table, and follow these guidelines carefully:
+2025-01-23 09:37:33,890 - api_logic_server_cli.genai.genai_svcs - INFO - .. saved request: system/genai/temp/request.json
+2025-01-23 09:39:07,342 - api_logic_server_cli.genai.genai_svcs - INFO - ChatGPT (93 secs) - response at: system/genai/temp/chatgpt_original.response
+2025-01-23 09:39:07,360 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. call_chatgpt saved response: system/genai/temp/response.json
+2025-01-23 09:39:07,361 - api_logic_server_cli.genai.genai_svcs - INFO - add description to Airport: This table stores information about the airports.
+2025-01-23 09:39:07,363 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: Airport: class Airport(Base):
+    """description: This table stores information about the airports."""
+    __tablename__ = 'airport'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    location = Column(String)
+    code = Column(String(3))
+
+2025-01-23 09:39:07,363 - api_logic_server_cli.genai.genai_svcs - INFO - add description to Flight: This table stores information about flights including departure and arrival details.
+2025-01-23 09:39:07,365 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: Flight: class Flight(Base):
+    """description: This table stores information about flights including departure and arrival details."""
+    __tablename__ = 'flight'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    flight_number = Column(String)
+    departure_airport_id = Column(Integer, ForeignKey('airport.id'))
+    arrival_airport_id = Column(Integer, ForeignKey('airport.id'))
+    scheduled_departure = Column(DateTime)
+    scheduled_arrival = Column(DateTime)
+    aircraft_id = Column(Integer, ForeignKey('aircraft.id'))
+
+2025-01-23 09:39:07,365 - api_logic_server_cli.genai.genai_svcs - INFO - add description to Aircraft: This table captures details of different aircrafts.
+2025-01-23 09:39:07,365 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: Aircraft: class Aircraft(Base):
+    """description: This table captures details of different aircrafts."""
+    __tablename__ = 'aircraft'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    model = Column(String)
+    seating_capacity = Column(Integer)
+
+2025-01-23 09:39:07,366 - api_logic_server_cli.genai.genai_svcs - INFO - add description to Passenger: This table records the details of passengers.
+2025-01-23 09:39:07,367 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: Passenger: class Passenger(Base):
+    """description: This table records the details of passengers."""
+    __tablename__ = 'passenger'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    passport_number = Column(String)
+    birthdate = Column(Date)
+    flight_id = Column(Integer, ForeignKey('flight.id'))
+
+2025-01-23 09:39:07,367 - api_logic_server_cli.genai.genai_svcs - INFO - add description to Pilot: This table contains information about pilots.
+2025-01-23 09:39:07,368 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: Pilot: class Pilot(Base):
+    """description: This table contains information about pilots."""
+    __tablename__ = 'pilot'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    license_number = Column(String)
+    years_of_experience = Column(Integer)
+
+2025-01-23 09:39:07,369 - api_logic_server_cli.genai.genai_svcs - INFO - add description to CrewMember: This table consists of crew members working on flights.
+2025-01-23 09:39:07,369 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: CrewMember: class CrewMember(Base):
+    """description: This table consists of crew members working on flights."""
+    __tablename__ = 'crew_member'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    position = Column(String)
+    flight_id = Column(Integer, ForeignKey('flight.id'))
+
+2025-01-23 09:39:07,369 - api_logic_server_cli.genai.genai_svcs - INFO - add description to Booking: This table stores booking information.
+2025-01-23 09:39:07,370 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: Booking: class Booking(Base):
+    """description: This table stores booking information."""
+    __tablename__ = 'booking'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    passenger_id = Column(Integer, ForeignKey('passenger.id'))
+    flight_id = Column(Integer, ForeignKey('flight.id'))
+    status = Column(String)
+    booking_date = Column(Date)
+
+2025-01-23 09:39:07,370 - api_logic_server_cli.genai.genai_svcs - INFO - add description to Baggage: This table records baggage details for passengers.
+2025-01-23 09:39:07,371 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: Baggage: class Baggage(Base):
+    """description: This table records baggage details for passengers."""
+    __tablename__ = 'baggage'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    passenger_id = Column(Integer, ForeignKey('passenger.id'))
+    weight = Column(Integer)
+    baggage_type = Column(String)
+
+2025-01-23 09:39:07,372 - api_logic_server_cli.genai.genai_svcs - INFO - add description to Airline: This table provides details about different airlines.
+2025-01-23 09:39:07,375 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: Airline: class Airline(Base):
+    """description: This table provides details about different airlines."""
+    __tablename__ = 'airline'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String)
+    code = Column(String(3))
+
+2025-01-23 09:39:07,376 - api_logic_server_cli.genai.genai_svcs - INFO - add description to PilotLicense: This table contains license details for pilots.
+2025-01-23 09:39:07,376 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: PilotLicense: class PilotLicense(Base):
+    """description: This table contains license details for pilots."""
+    __tablename__ = 'pilot_license'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    pilot_id = Column(Integer, ForeignKey('pilot.id'))
+    license_type = Column(String)
+    expiry_date = Column(Date)
+
+2025-01-23 09:39:07,377 - api_logic_server_cli.genai.genai_svcs - INFO - add description to AircraftMaintenance: This table logs maintenance details of aircraft.
+2025-01-23 09:39:07,379 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: AircraftMaintenance: class AircraftMaintenance(Base):
+    """description: This table logs maintenance details of aircraft."""
+    __tablename__ = 'aircraft_maintenance'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    aircraft_id = Column(Integer, ForeignKey('aircraft.id'))
+    date_of_maintenance = Column(Date)
+    next_due_date = Column(Date)
+    remarks = Column(String)
+
+2025-01-23 09:39:07,379 - api_logic_server_cli.genai.genai_svcs - INFO - add description to AirportFacility: Records various facilities available at airpots.
+2025-01-23 09:39:07,382 - api_logic_server_cli.genai.genai_svcs - INFO - Added description to model: AirportFacility: class AirportFacility(Base):
+    """description: Records various facilities available at airpots."""
+    __tablename__ = 'airport_facility'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    airport_id = Column(Integer, ForeignKey('airport.id'))
+    facility_type = Column(String)
+    description = Column(String)
+
+2025-01-23 09:39:07,383 - api_logic_server_cli.genai.genai_svcs - DEBUG - .... test_data_rows: 48
+2025-01-23 09:39:07,383 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. code for db creation and test data: system/genai/temp/create_db_models.py
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. fixed hallucination/indent:     Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. found class: Flight in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. no classes found in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. no classes found in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. no classes found in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. found class: Passenger in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. fixed hallucination/indent:     Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. no classes found in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. no classes found in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. found class: Flight in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. no classes found in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
+2025-01-23 09:39:07,788 - api_logic_server_cli.genai.genai_svcs - DEBUG - .. no classes found in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")

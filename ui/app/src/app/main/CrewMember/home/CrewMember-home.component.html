@@ -1,0 +1,44 @@
+<o-form-layout-manager attr="CrewMember" mode="tab" title="CREWMEMBER">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="CrewMemberTable" 
+            service="CrewMember" 
+            entity="CrewMember" 
+            title="CREWMEMBER"
+            keys="id"
+            columns="name;flight_id;position;id" 
+            header-actions="R;D"
+            visible-columns="name;flight_id;position;id"  
+            sort-columns="name" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #name attr="name" title=" name*" editable="no" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="flight_id" title="flight_id">
+    <o-table-cell-renderer-service attr="flight_id" 
+        service="Flight" entity="FlightType" columns="id;id"
+        parent-keys="id:flight_id"
+        value-column="id" keys="flight_id"
+        visible-columns="id" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column #position attr="position" title="position" editable="no" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column #id attr="id" title="id" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

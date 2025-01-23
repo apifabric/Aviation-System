@@ -1,0 +1,82 @@
+<div class="container">
+<o-form-container breadcrumb="yes" breadcrumb-label-columns="name" breadcrumb-separator=", " class="fill-form">
+      <o-form #form attr="Pilot_form_edit" 
+        service="Pilot" 
+        entity="Pilot" 
+        fxLayout="column" 
+        show-header="yes" 
+        header-actions="R;I;U;D"
+        #oDetailForm keys="id" 
+        keys-sql-types="INTEGER" 
+        show-header-navigation="yes"
+        (onDataLoaded)="onDataLoaded($event)">
+
+  <o-row attr="row1" layout-align="start stretch">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+      
+      <o-text-input #name attr="name" label=" name*" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+      <o-text-input #license_number attr="license_number" label="license_number" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+      <o-integer-input #years_of_experience attr="years_of_experience" label="years_of_experience" type="integer" editable="no" required="no" ></o-integer-input>
+      
+      <o-integer-input #id attr="id" label="id" type="integer" editable="no" required="no" ></o-integer-input>
+      
+    </div>
+  </o-row>
+      
+      <mat-tab-group fxFill>
+        
+        <mat-tab label="PILOTLICENSE-pilot_id">
+    <div layout-padding>
+      <o-table 
+        attr="PilotLicenseTable" 
+        service="PilotLicense" 
+        entity="PilotLicense" 
+        keys="id"
+        parent-keys="pilot_id:id"
+        columns="id;pilot_id;license_type;expiry_date"  
+        horizontal-scroll="yes"
+        detail-form-route="PilotLicense" 
+        edit-form-route="PilotLicense"
+        visible-columns="id;pilot_id;license_type;expiry_date"  
+        sort-columns="id" 
+        query-rows="25" 
+        quick-filter="yes"
+        row-height="medium" 
+        select-all-checkbox="true" 
+        pageable="yes"  
+        auto-adjust="true" 
+        virtual-scroll="yes" 
+        insert-button="yes" 
+        delete-button="yes" 
+        fixed-header="true" 
+        class="vertical-padding-8"
+        edition-mode="dblclick" 
+        horizontal-scroll="yes" class="fill-form">
+        
+          <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+        
+          <o-table-column attr="pilot_id" title="pilot_id">
+    <o-table-cell-renderer-service attr="pilot_id" 
+        service="Pilot" entity="PilotType" columns="id;name"
+        parent-keys="id:pilot_id"
+        value-column="name" keys="pilot_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column #license_type attr="license_type" title="license_type" editable="no" required="no" content-align="left"></o-table-column>
+        
+          <o-date-input #expiry_date attr="expiry_date" type="date" label="expiry_date" enabled="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+        
+        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+      </o-table>
+    </div>
+</mat-tab>
+        
+      </mat-tab-group>
+      
+    </o-form>
+  </o-form-container>
+</div>

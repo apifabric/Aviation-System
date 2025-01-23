@@ -1,0 +1,111 @@
+Loading rules from /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules
+01JJ98C974B461Y5G2H0AVHFDC rule file: logic/wg_rules/Ticket_Price_Constraint.py
+[32mLoading Rule Module Ticket_Price_Constraint 01JJ98C974B461Y5G2H0AVHFDC [0m
+name 'Ticket' is not defined
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 174, in load_active_rules
+    rule_module.init_rule()
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+    Rule.constraint(validate=Ticket,
+                             ^^^^^^
+NameError: name 'Ticket' is not defined
+[31mFailed to load active rule 01JJ98C974B461Y5G2H0AVHFDC Rule.constraint(validate=Ticket,
+                as_condition=lambda row: row.price > 0,
+                error_msg="Ticket price ({row.price}) must be greater than zero") [0m
+Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 174, in load_active_rules
+    rule_module.init_rule()
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+    Rule.constraint(validate=Ticket,
+                             ^^^^^^
+NameError: name 'Ticket' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 209, in load_verify_rules
+    load_active_rules(rule_code_dir, rules)
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 178, in load_active_rules
+    set_rule_error(rule["id"], f"{type(exc).__name__}: {exc}")
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 60, in set_rule_error
+    subprocess.check_output([
+  File "/usr/local/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.
+[31mFailed to load active exported rules: Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.[0m
+Loading rules from /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules
+01JJ98C974B461Y5G2H0AVHFDC rule file: logic/wg_rules/Ticket_Price_Constraint.py
+01JJ98FCW8XFN551DKCTSQ9AA0 rule file: logic/wg_rules/Passenger_Count_on_Flight.py
+01JJ98FCWP15E57YG6G1JS13ZB rule file: logic/wg_rules/Seating_Capacity_Constraint.py
+
+[34mVerifying rule: Ticket_Price_Constraint - 01JJ98C974B461Y5G2H0AVHFDC[0m
+name 'Ticket' is not defined
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 144, in verify_rules
+    rule_module.init_rule()
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+    Rule.constraint(validate=Ticket,
+                             ^^^^^^
+NameError: name 'Ticket' is not defined
+[31mFailed to verify active rule code
+Rule.constraint(validate=Ticket,
+                as_condition=lambda row: row.price > 0,
+                error_msg="Ticket price ({row.price}) must be greater than zero")
+[33mNameError: name 'Ticket' is not defined[0m
+01JJ98C974B461Y5G2H0AVHFDC rule file: logic/wg_rules/Ticket_Price_Constraint.py
+01JJ98FCW8XFN551DKCTSQ9AA0 rule file: logic/wg_rules/Passenger_Count_on_Flight.py
+01JJ98FCWP15E57YG6G1JS13ZB rule file: logic/wg_rules/Seating_Capacity_Constraint.py
+
+[34mVerifying rule: Passenger_Count_on_Flight - 01JJ98FCW8XFN551DKCTSQ9AA0[0m
+type object 'Flight' has no attribute 'passenger_count'
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 144, in verify_rules
+    rule_module.init_rule()
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Passenger_Count_on_Flight.py", line 6, in init_rule
+    Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'Flight' has no attribute 'passenger_count'
+[31mFailed to verify accepted rule code
+Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+[33mAttributeError: type object 'Flight' has no attribute 'passenger_count'[0m
+
+[34mVerifying rule: Seating_Capacity_Constraint - 01JJ98FCWP15E57YG6G1JS13ZB[0m
+LBActivateException: 
+[]
+['Flight.passenger_count: constraint']
+LogicBank Activation Error
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 145, in verify_rules
+    LogicBank.activate(session=safrs.DB.session, activator=rule_module.init_rule)
+  File "/usr/local/lib/python3.12/site-packages/logic_bank/logic_bank.py", line 149, in activate
+    raise LBActivateException(rule_bank.invalid_rules, missing_attributes)
+logic_bank.exceptions.LBActivateException: LBActivateException: 
+[]
+['Flight.passenger_count: constraint']
+LogicBank Activation Error
+[31mFailed to verify accepted rule code
+Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
+[33mLBActivateException: LBActivateException: 
+[]
+['Flight.passenger_count: constraint']
+LogicBank Activation Error[0m
+Loading rules from /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules
+01JJ98C974B461Y5G2H0AVHFDC rule file: logic/wg_rules/Ticket_Price_Constraint.py
+01JJ98FCW8XFN551DKCTSQ9AA0 rule file: logic/wg_rules/Passenger_Count_on_Flight.py
+01JJ98FCWP15E57YG6G1JS13ZB rule file: logic/wg_rules/Seating_Capacity_Constraint.py
+[32mLoading Rule Module Ticket_Price_Constraint 01JJ98C974B461Y5G2H0AVHFDC [0m
+name 'Ticket' is not defined
+Traceback (most recent call last):
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 174, in load_active_rules
+    rule_module.init_rule()
+  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+    Rule.constraint(validate=Ticket,
+                             ^^^^^^
+NameError: name 'Ticket' is not defined
+[31mFailed to load active rule 01JJ98C974B461Y5G2H0AVHFDC Rule.constraint(validate=Ticket,
+                as_condition=lambda row: row.price > 0,
+                error_msg="Ticket price ({row.price}) must be greater than zero") [0m

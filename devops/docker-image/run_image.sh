@@ -13,10 +13,10 @@
 # Then, explore your container - e.g.
 #    env # see environment variables
 #    python api_logic_server_run.py  # run the app
-# docker run --env-file devops/docker/env.list -it --name api_logic_project --rm --net dev-network -p 5656:5656 -p 5002:5002 apilogicserver/aviationsystem bash
+# docker run --env-file devops/docker/env.list -it --name api_logic_project --rm --net dev-network -p 5656:5656 -p 5002:5002 apilogicserver/aviationsystemiter1 bash
 
 # Start container and run the app
-docker run --env-file devops/docker-image/env.list -it --name api_logic_project --rm --net dev-network -p 5656:5656 -p 5002:5002 apilogicserver/aviationsystem
+docker run --env-file devops/docker-image/env.list -it --name api_logic_project --rm --net dev-network -p 5656:5656 -p 5002:5002 apilogicserver/aviationsystemiter1
 
 # Or, start the container in bash
 # docker run --env-file devops/docker-image/env.list -it --name api_logic_project --rm --net dev-network -p 5656:5656 -p 5002:5002 apilogicserver/aicustomerorders /bin/bash
