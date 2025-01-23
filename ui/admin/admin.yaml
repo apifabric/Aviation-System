@@ -1,15 +1,15 @@
 about:
-  date: January 23, 2025 09:39:07
+  date: January 23, 2025 10:42:36
   recent_changes: works with modified safrs-react-admin
   version: 0.0.0
 api_root: '{http_type}://{swagger_host}:{port}/{api}'
 authentication: '{system-default}'
 info:
-  number_relationships: 11
-  number_tables: 12
+  number_relationships: 2
+  number_tables: 4
 info_toggle_checked: true
 resources:
-  Aircraft:
+  Airplane:
     attributes:
     - label: ' id*'
       name: id
@@ -17,104 +17,36 @@ resources:
       sort: true
     - name: model
     - name: seating_capacity
-    description: This table captures details of different aircrafts.
-    info_list: This table captures details of different aircrafts.
+    - name: passenger_count
+    description: Represents an airplane entity.
+    info_list: Represents an airplane entity.
     tab_groups:
     - direction: tomany
       fks:
-      - aircraft_id
-      name: AircraftMaintenanceList
-      resource: AircraftMaintenance
-    - direction: tomany
-      fks:
-      - aircraft_id
-      name: FlightList
-      resource: Flight
-    type: Aircraft
+      - airplane_id
+      name: PassengerList
+      resource: Passenger
+    type: Airplane
     user_key: id
-  AircraftMaintenance:
-    attributes:
-    - label: ' id*'
-      name: id
-      search: true
-      sort: true
-    - name: aircraft_id
-    - name: date_of_maintenance
-      type: DATE
-    - name: next_due_date
-      type: DATE
-    - name: remarks
-    description: This table logs maintenance details of aircraft.
-    info_list: This table logs maintenance details of aircraft.
-    tab_groups:
-    - direction: toone
-      fks:
-      - aircraft_id
-      name: aircraft
-      resource: Aircraft
-    type: AircraftMaintenance
-    user_key: id
-  Airline:
-    attributes:
-    - label: ' name*'
-      name: name
-      search: true
-      sort: true
-    - name: code
-    - name: id
-    description: This table provides details about different airlines.
-    info_list: This table provides details about different airlines.
-    type: Airline
-    user_key: name
   Airport:
     attributes:
     - label: ' name*'
       name: name
       search: true
       sort: true
-    - name: location
     - name: code
+    - name: city
+    - name: country
+    - name: latitude
+      type: DECIMAL
+    - name: longitude
+      type: DECIMAL
     - name: id
-    description: This page shows information about the airports.
-    info_list: This page shows information about the airports.
-    tab_groups:
-    - direction: tomany
-      fks:
-      - airport_id
-      name: AirportFacilityList
-      resource: AirportFacility
-    - direction: tomany
-      fks:
-      - arrival_airport_id
-      name: FlightList
-      resource: Flight
-    - direction: tomany
-      fks:
-      - departure_airport_id
-      name: departureFlightList
-      resource: Flight
+    description: Represents an airport entity.
+    info_list: Represents an airport entity.
     type: Airport
     user_key: name
-  AirportFacility:
-    attributes:
-    - label: ' description*'
-      name: description
-      search: true
-      sort: true
-    - name: airport_id
-    - name: facility_type
-    - name: id
-    description: Records various facilities available at airpots.
-    info_list: Records various facilities available at airpots.
-    tab_groups:
-    - direction: toone
-      fks:
-      - airport_id
-      name: airport
-      resource: Airport
-    type: AirportFacility
-    user_key: description
-  Baggage:
+  Luggage:
     attributes:
     - label: ' id*'
       name: id
@@ -122,112 +54,16 @@ resources:
       sort: true
     - name: passenger_id
     - name: weight
-    - name: baggage_type
-    description: This table records baggage details for passengers.
-    info_list: This table records baggage details for passengers.
+      type: DECIMAL
+    description: Represents luggage linked to a passenger.
+    info_list: Represents luggage linked to a passenger.
     tab_groups:
     - direction: toone
       fks:
       - passenger_id
       name: passenger
       resource: Passenger
-    type: Baggage
-    user_key: id
-  Booking:
-    attributes:
-    - label: ' id*'
-      name: id
-      search: true
-      sort: true
-    - name: flight_id
-    - name: passenger_id
-    - name: status
-    - name: booking_date
-      type: DATE
-    description: This page shows booking information.
-    info_list: This page shows booking information.
-    tab_groups:
-    - direction: toone
-      fks:
-      - flight_id
-      name: flight
-      resource: Flight
-    - direction: toone
-      fks:
-      - passenger_id
-      name: passenger
-      resource: Passenger
-    type: Booking
-    user_key: id
-  CrewMember:
-    attributes:
-    - label: ' name*'
-      name: name
-      search: true
-      sort: true
-    - name: flight_id
-    - name: position
-    - name: id
-    description: This table consists of crew members working on flights.
-    info_list: This table consists of crew members working on flights.
-    tab_groups:
-    - direction: toone
-      fks:
-      - flight_id
-      name: flight
-      resource: Flight
-    type: CrewMember
-    user_key: name
-  Flight:
-    attributes:
-    - label: ' id*'
-      name: id
-      search: true
-      sort: true
-    - name: aircraft_id
-    - name: arrival_airport_id
-    - name: departure_airport_id
-    - name: flight_number
-    - name: scheduled_departure
-      type: DATETIME
-    - name: scheduled_arrival
-      type: DATETIME
-    description: This page shows information about flights including departure and
-      arrival details.
-    info_list: This page shows information about flights including departure and arrival
-      details.
-    tab_groups:
-    - direction: tomany
-      fks:
-      - flight_id
-      name: BookingList
-      resource: Booking
-    - direction: tomany
-      fks:
-      - flight_id
-      name: CrewMemberList
-      resource: CrewMember
-    - direction: tomany
-      fks:
-      - flight_id
-      name: PassengerList
-      resource: Passenger
-    - direction: toone
-      fks:
-      - aircraft_id
-      name: aircraft
-      resource: Aircraft
-    - direction: toone
-      fks:
-      - arrival_airport_id
-      name: arrival_airport
-      resource: Airport
-    - direction: toone
-      fks:
-      - departure_airport_id
-      name: departure_airport
-      resource: Airport
-    type: Flight
+    type: Luggage
     user_key: id
   Passenger:
     attributes:
@@ -235,157 +71,25 @@ resources:
       name: name
       search: true
       sort: true
-    - name: flight_id
-    - name: passport_number
-    - name: birthdate
-      type: DATE
+    - name: airplane_id
+    - name: email
+    - name: luggage_weight_total
+      type: DECIMAL
     - name: id
-    description: This table records the details of passengers.
-    info_list: This table records the details of passengers.
+    description: Represents a passenger entity with a link to airplane.
+    info_list: Represents a passenger entity with a link to airplane.
     tab_groups:
     - direction: tomany
       fks:
       - passenger_id
-      name: BaggageList
-      resource: Baggage
-    - direction: tomany
-      fks:
-      - passenger_id
-      name: BookingList
-      resource: Booking
+      name: LuggageList
+      resource: Luggage
     - direction: toone
       fks:
-      - flight_id
-      name: flight
-      resource: Flight
+      - airplane_id
+      name: airplane
+      resource: Airplane
     type: Passenger
-    user_key: name
-  Pilot:
-    attributes:
-    - label: ' name*'
-      name: name
-      search: true
-      sort: true
-    - name: license_number
-    - name: years_of_experience
-    - name: id
-    description: This table contains information about pilots.
-    info_list: This table contains information about pilots.
-    tab_groups:
-    - direction: tomany
-      fks:
-      - pilot_id
-      name: PilotLicenseList
-      resource: PilotLicense
-    type: Pilot
-    user_key: name
-  PilotLicense:
-    attributes:
-    - label: ' id*'
-      name: id
-      search: true
-      sort: true
-    - name: pilot_id
-    - name: license_type
-    - name: expiry_date
-      type: DATE
-    description: This table contains license details for pilots.
-    info_list: This table contains license details for pilots.
-    tab_groups:
-    - direction: toone
-      fks:
-      - pilot_id
-      name: pilot
-      resource: Pilot
-    type: PilotLicense
-    user_key: id
-  SPAComponent:
-    attributes:
-    - hidden: true
-      name: id
-      required: true
-    - name: Type
-    - name: prompt
-      type: textarea
-    - name: user_comments
-      type: textarea
-    - name: created_at
-      type: datetime
-    - name: ai_comments
-      type: textarea
-    - label: name
-      name: name
-      required: true
-      search: true
-    - name: code
-      type: textarea
-    hidden: true
-    order: 2002
-    sort: -created_at
-    tab_groups:
-    - direction: tomany
-      fks:
-      - id
-      name: ChildList
-      resource: SPAComponent
-    type: SPAComponent
-    user_key: name
-  SPAPage:
-    attributes:
-    - label: ' name*'
-      name: name
-      required: true
-      search: true
-      sort: true
-    - name: id
-      required: true
-    - name: contact
-    hidden: true
-    order: 2000
-    tab_groups:
-    - direction: tomany
-      fks:
-      - page_id
-      name: SectionList
-      resource: Section
-    type: SPAPage
-    user_key: name
-  SPASection:
-    attributes:
-    - name: order
-      sort: true
-      type: number
-    - label: ' name*'
-      name: name
-      required: true
-      search: true
-    - name: page_id
-    - name: title
-      required: true
-    - name: subtitle
-    - name: label
-    - name: Type
-    - name: paragraph
-      type: textarea
-    - name: content
-      type: textarea
-    - name: id
-    - name: background
-    - name: template
-    - name: style
-      type: json
-    - name: hidden
-      type: boolean
-    hidden: true
-    order: 2001
-    sort: order
-    tab_groups:
-    - direction: toone
-      fks:
-      - page_id
-      name: page
-      resource: SPASection
-    type: SPASection
     user_key: name
 settings:
   HomeJS: /admin-app/home.js

@@ -3,8 +3,8 @@
 # intended for use in portal cli - not to be run on your local machine.
 
 projectname="apilogicserver_project"  # project directory
-resourcename="aviationsystemiter1"  # lower case, only
-resourcegroup="aviationsystemiter1_rg"
+resourcename="aviationsystemiter13"  # lower case, only
+resourcegroup="aviationsystemiter13_rg"
 dockerrepositoryname="apilogicserver"  # change this to your DockerHub Repository
 githubaccount="apilogicserver"         # change this to your GitHub account
 version="1.0.0"
@@ -14,8 +14,8 @@ version="1.0.0"
 # which uses: https://github.com/Azure-Samples/multicontainerwordpress
 
 # login to Azure Portal CLI (substitute your github account for apilogicserver)
-# git clone https://github.com/apilogicserver/aviationsystemiter1.git
-# cd aviationsystemiter1
+# git clone https://github.com/apilogicserver/aviationsystemiter13.git
+# cd aviationsystemiter13
 # sh devops/docker-compose-dev-azure/azure-deploy.sh
 
 echo " "
@@ -79,9 +79,9 @@ az appservice plan create --name myAppServicePlan --resource-group $resourcegrou
 az container create --resource-group $resourcegroup --name ${projectname} --image ${dockerrepositoryname}/${resourcename}:latest --dns-name-label ${resourcename} --ports 5656 --environment-variables 'VERBOSE'='True'  'APILOGICPROJECT_CLIENT_URI'='//{resourcename}.westus.azurecontainer.io:5656'
 
 # or, issue commands like these (fix the git repo name) directly in portal, or local az cli
-az group create --name aviationsystemiter1_rg --location "westus"
-az appservice plan create --name myAppServicePlan --resource-group aviationsystemiter1_rg --sku S1 --is-linux
-az container create --resource-group aviationsystemiter1_rg --name aviationsystemiter1 --image apilogicserver/aviationsystemiter1:latest --dns-name-label aviationsystemiter1 --ports 5656 --environment-variables 'VERBOSE'='True'  'APILOGICPROJECT_CLIENT_URI'='//aviationsystemiter1.westus.azurecontainer.io:5656'
+az group create --name aviationsystemiter13_rg --location "westus"
+az appservice plan create --name myAppServicePlan --resource-group aviationsystemiter13_rg --sku S1 --is-linux
+az container create --resource-group aviationsystemiter13_rg --name aviationsystemiter13 --image apilogicserver/aviationsystemiter13:latest --dns-name-label aviationsystemiter13 --ports 5656 --environment-variables 'VERBOSE'='True'  'APILOGICPROJECT_CLIENT_URI'='//aviationsystemiter13.westus.azurecontainer.io:5656'
 
 # e.g.: az container create --resource-group aicustomerorders_rg --name aicustomerorders --image apilogicserver/aicustomerorders:latest --dns-name-label aicustomerorders --ports 5656 --environment-variables VERBOSE=True APILOGICPROJECT_CLIENT_URI=//aicustomerorders.westus.azurecontainer.io:5656
 

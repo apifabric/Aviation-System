@@ -82,11 +82,11 @@ while restart_count < 5 and has_errors:
     restart_count += 1
     data_log.append("print(Pass: " + str(restart_count) + ")" )
     try:
-        if not 2754442381945711730 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airport_1 = Airport(id=1, name="JFK International", location="New York, USA", code="JFK")
+        if not 551213934113077998 in succeeded_hashes:  # avoid duplicate inserts
+            instance = airport1 = Airport(name="Heathrow", code="LHR", city="London", country="UK", latitude=Decimal('51.47'), longitude=Decimal('-0.454'))
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(2754442381945711730)
+            succeeded_hashes.add(551213934113077998)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -99,11 +99,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not 3619293378404388350 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airport_2 = Airport(id=2, name="Los Angeles International", location="Los Angeles, USA", code="LAX")
+        if not 5728750706896768380 in succeeded_hashes:  # avoid duplicate inserts
+            instance = airport2 = Airport(name="JFK", code="JFK", city="New York", country="USA", latitude=Decimal('40.6413'), longitude=Decimal('-73.7781'))
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(3619293378404388350)
+            succeeded_hashes.add(5728750706896768380)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -116,11 +116,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not -535588445232476101 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airport_3 = Airport(id=3, name="Heathrow", location="London, UK", code="LHR")
+        if not 5216075133246106556 in succeeded_hashes:  # avoid duplicate inserts
+            instance = airport3 = Airport(name="Haneda", code="HND", city="Tokyo", country="Japan", latitude=Decimal('35.5522'), longitude=Decimal('139.7798'))
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(-535588445232476101)
+            succeeded_hashes.add(5216075133246106556)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -133,11 +133,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not -8245716919172235268 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airport_4 = Airport(id=4, name="Tokyo Haneda", location="Tokyo, Japan", code="HND")
+        if not 6627830779999437737 in succeeded_hashes:  # avoid duplicate inserts
+            instance = airport4 = Airport(name="Schiphol", code="AMS", city="Amsterdam", country="Netherlands", latitude=Decimal('52.3105'), longitude=Decimal('4.7683'))
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(-8245716919172235268)
+            succeeded_hashes.add(6627830779999437737)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -150,11 +150,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not -6463677349804580839 in succeeded_hashes:  # avoid duplicate inserts
-            instance = flight_1 = Flight(id=1, flight_number="AA100", departure_airport_id=1, arrival_airport_id=2, scheduled_departure=date(2023, 10, 1), scheduled_arrival=date(2023, 10, 1), aircraft_id=1)
+        if not 2846566314885507724 in succeeded_hashes:  # avoid duplicate inserts
+            instance = airplane1 = Airplane(model="Boeing 777-200", seating_capacity=300, passenger_count=290)
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(-6463677349804580839)
+            succeeded_hashes.add(2846566314885507724)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -167,11 +167,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not 7343225245551492039 in succeeded_hashes:  # avoid duplicate inserts
-            instance = flight_2 = Flight(id=2, flight_number="BA256", departure_airport_id=3, arrival_airport_id=1, scheduled_departure=date(2023, 10, 2), scheduled_arrival=date(2023, 10, 2), aircraft_id=2)
+        if not 215318399422096404 in succeeded_hashes:  # avoid duplicate inserts
+            instance = airplane2 = Airplane(model="Airbus A320", seating_capacity=150, passenger_count=148)
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(7343225245551492039)
+            succeeded_hashes.add(215318399422096404)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -184,11 +184,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not -7286140527089550720 in succeeded_hashes:  # avoid duplicate inserts
-            instance = flight_3 = Flight(id=3, flight_number="JL789", departure_airport_id=4, arrival_airport_id=3, scheduled_departure=date(2023, 10, 3), scheduled_arrival=date(2023, 10, 3), aircraft_id=3)
+        if not 8034508885884281815 in succeeded_hashes:  # avoid duplicate inserts
+            instance = airplane3 = Airplane(model="Boeing 737", seating_capacity=200, passenger_count=198)
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(-7286140527089550720)
+            succeeded_hashes.add(8034508885884281815)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -201,11 +201,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not -8171618588742082813 in succeeded_hashes:  # avoid duplicate inserts
-            instance = flight_4 = Flight(id=4, flight_number="QF11", departure_airport_id=2, arrival_airport_id=4, scheduled_departure=date(2023, 10, 4), scheduled_arrival=date(2023, 10, 4), aircraft_id=4)
+        if not -3092369608073351193 in succeeded_hashes:  # avoid duplicate inserts
+            instance = airplane4 = Airplane(model="Airbus A380", seating_capacity=500, passenger_count=480)
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(-8171618588742082813)
+            succeeded_hashes.add(-3092369608073351193)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -218,11 +218,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not -5665293099833956941 in succeeded_hashes:  # avoid duplicate inserts
-            instance = aircraft_1 = Aircraft(id=1, model="Boeing 777", seating_capacity=300)
+        if not -8947441501065694885 in succeeded_hashes:  # avoid duplicate inserts
+            instance = passenger1 = Passenger(name="John Doe", email="johndoe@example.com", luggage_weight_total=Decimal('25.5'), airplane_id=1)
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(-5665293099833956941)
+            succeeded_hashes.add(-8947441501065694885)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -235,11 +235,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not 7742394960130165808 in succeeded_hashes:  # avoid duplicate inserts
-            instance = aircraft_2 = Aircraft(id=2, model="Airbus A380", seating_capacity=500)
+        if not -3578708456150804589 in succeeded_hashes:  # avoid duplicate inserts
+            instance = passenger2 = Passenger(name="Jane Smith", email="janesmith@example.com", luggage_weight_total=Decimal('22.0'), airplane_id=1)
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(7742394960130165808)
+            succeeded_hashes.add(-3578708456150804589)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -252,11 +252,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not 5647936268062921529 in succeeded_hashes:  # avoid duplicate inserts
-            instance = aircraft_3 = Aircraft(id=3, model="Boeing 787", seating_capacity=250)
+        if not 5132504091257146408 in succeeded_hashes:  # avoid duplicate inserts
+            instance = passenger3 = Passenger(name="Alice Brown", email="alicebrown@example.com", luggage_weight_total=Decimal('30.0'), airplane_id=2)
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(5647936268062921529)
+            succeeded_hashes.add(5132504091257146408)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -269,11 +269,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not -2801426302363592417 in succeeded_hashes:  # avoid duplicate inserts
-            instance = aircraft_4 = Aircraft(id=4, model="Airbus A320", seating_capacity=180)
+        if not 6063352197359043645 in succeeded_hashes:  # avoid duplicate inserts
+            instance = passenger4 = Passenger(name="Bob White", email="bobwhite@example.com", luggage_weight_total=Decimal('18.0'), airplane_id=2)
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(-2801426302363592417)
+            succeeded_hashes.add(6063352197359043645)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -286,11 +286,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not -6852669887533676667 in succeeded_hashes:  # avoid duplicate inserts
-            instance = passenger_1 = Passenger(id=1, name="John Doe", passport_number="A1234567", birthdate=date(1985, 5, 20), flight_id=1)
+        if not 788912287179671787 in succeeded_hashes:  # avoid duplicate inserts
+            instance = luggage1 = Luggage(passenger_id=1, weight=Decimal('5.5'))
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(-6852669887533676667)
+            succeeded_hashes.add(788912287179671787)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -303,11 +303,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not 2112257836852178778 in succeeded_hashes:  # avoid duplicate inserts
-            instance = passenger_2 = Passenger(id=2, name="Jane Smith", passport_number="B7654321", birthdate=date(1990, 8, 15), flight_id=1)
+        if not -9050887353415901475 in succeeded_hashes:  # avoid duplicate inserts
+            instance = luggage2 = Luggage(passenger_id=1, weight=Decimal('3.0'))
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(2112257836852178778)
+            succeeded_hashes.add(-9050887353415901475)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -320,11 +320,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not 1180391706465522560 in succeeded_hashes:  # avoid duplicate inserts
-            instance = passenger_3 = Passenger(id=3, name="Alice Brown", passport_number="C2345678", birthdate=date(1992, 1, 10), flight_id=2)
+        if not 3451642031570248053 in succeeded_hashes:  # avoid duplicate inserts
+            instance = luggage3 = Luggage(passenger_id=2, weight=Decimal('8.0'))
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(1180391706465522560)
+            succeeded_hashes.add(3451642031570248053)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:
@@ -337,555 +337,11 @@ while restart_count < 5 and has_errors:
             session.rollback()
 
     try:
-        if not 3210285804393852076 in succeeded_hashes:  # avoid duplicate inserts
-            instance = passenger_4 = Passenger(id=4, name="Bob Johnson", passport_number="D8765432", birthdate=date(1988, 7, 25), flight_id=2)
+        if not -2916037213486577849 in succeeded_hashes:  # avoid duplicate inserts
+            instance = luggage4 = Luggage(passenger_id=2, weight=Decimal('14.0'))
             session.add(instance)
             session.commit()
-            succeeded_hashes.add(3210285804393852076)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 4115133985950816096 in succeeded_hashes:  # avoid duplicate inserts
-            instance = pilot_1 = Pilot(id=1, name="Captain Lewis", license_number="PL789123", years_of_experience=15)
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(4115133985950816096)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -6966525446045278158 in succeeded_hashes:  # avoid duplicate inserts
-            instance = pilot_2 = Pilot(id=2, name="Captain Clarke", license_number="PL456789", years_of_experience=20)
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-6966525446045278158)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 2280638151922036089 in succeeded_hashes:  # avoid duplicate inserts
-            instance = pilot_3 = Pilot(id=3, name="Captain Adams", license_number="PL123456", years_of_experience=10)
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(2280638151922036089)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 7230574596424126262 in succeeded_hashes:  # avoid duplicate inserts
-            instance = pilot_4 = Pilot(id=4, name="Captain Edwards", license_number="PL987654", years_of_experience=5)
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(7230574596424126262)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -2356660607082067734 in succeeded_hashes:  # avoid duplicate inserts
-            instance = crew_member_1 = CrewMember(id=1, name="Kelly Williams", position="Flight Attendant", flight_id=1)
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-2356660607082067734)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 8909269416274080808 in succeeded_hashes:  # avoid duplicate inserts
-            instance = crew_member_2 = CrewMember(id=2, name="Peter Clark", position="Co-Pilot", flight_id=2)
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(8909269416274080808)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 7408182543527484446 in succeeded_hashes:  # avoid duplicate inserts
-            instance = crew_member_3 = CrewMember(id=3, name="Susan Taylor", position="Navigator", flight_id=3)
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(7408182543527484446)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -6438687085768475984 in succeeded_hashes:  # avoid duplicate inserts
-            instance = crew_member_4 = CrewMember(id=4, name="Tom Hanks", position="Flight Engineer", flight_id=4)
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-6438687085768475984)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -4032281386367961556 in succeeded_hashes:  # avoid duplicate inserts
-            instance = booking_1 = Booking(id=1, passenger_id=1, flight_id=1, status="Confirmed", booking_date=date(2023, 9, 1))
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-4032281386367961556)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -5090789021468925534 in succeeded_hashes:  # avoid duplicate inserts
-            instance = booking_2 = Booking(id=2, passenger_id=2, flight_id=1, status="Cancelled", booking_date=date(2023, 9, 5))
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-5090789021468925534)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -8485729457979759681 in succeeded_hashes:  # avoid duplicate inserts
-            instance = booking_3 = Booking(id=3, passenger_id=3, flight_id=2, status="Confirmed", booking_date=date(2023, 9, 6))
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-8485729457979759681)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 1045845622867349250 in succeeded_hashes:  # avoid duplicate inserts
-            instance = booking_4 = Booking(id=4, passenger_id=4, flight_id=2, status="Pending", booking_date=date(2023, 9, 10))
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(1045845622867349250)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -4451086687315031646 in succeeded_hashes:  # avoid duplicate inserts
-            instance = baggage_1 = Baggage(id=1, passenger_id=1, weight=20, baggage_type="Checked")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-4451086687315031646)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 3320456132096708475 in succeeded_hashes:  # avoid duplicate inserts
-            instance = baggage_2 = Baggage(id=2, passenger_id=2, weight=15, baggage_type="Carry-On")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(3320456132096708475)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 5184366364540701191 in succeeded_hashes:  # avoid duplicate inserts
-            instance = baggage_3 = Baggage(id=3, passenger_id=3, weight=25, baggage_type="Checked")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(5184366364540701191)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 4844466652209484770 in succeeded_hashes:  # avoid duplicate inserts
-            instance = baggage_4 = Baggage(id=4, passenger_id=4, weight=17, baggage_type="Carry-On")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(4844466652209484770)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -8499811127517486863 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airline_1 = Airline(id=1, name="American Airlines", code="AA")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-8499811127517486863)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 3108588483433803091 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airline_2 = Airline(id=2, name="British Airways", code="BA")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(3108588483433803091)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -6608949702577696026 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airline_3 = Airline(id=3, name="Japan Airlines", code="JL")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-6608949702577696026)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -6437151953172259010 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airline_4 = Airline(id=4, name="Qantas", code="QF")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-6437151953172259010)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 1747762507803237959 in succeeded_hashes:  # avoid duplicate inserts
-            instance = pilot_license_1 = PilotLicense(id=1, pilot_id=1, license_type="Commercial", expiry_date=date(2025, 5, 20))
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(1747762507803237959)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 1568309803651437877 in succeeded_hashes:  # avoid duplicate inserts
-            instance = pilot_license_2 = PilotLicense(id=2, pilot_id=2, license_type="ATPL", expiry_date=date(2026, 8, 15))
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(1568309803651437877)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 4238787653409015655 in succeeded_hashes:  # avoid duplicate inserts
-            instance = pilot_license_3 = PilotLicense(id=3, pilot_id=3, license_type="Commercial", expiry_date=date(2024, 1, 10))
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(4238787653409015655)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -5876590865970965788 in succeeded_hashes:  # avoid duplicate inserts
-            instance = pilot_license_4 = PilotLicense(id=4, pilot_id=4, license_type="PPL", expiry_date=date(2025, 7, 25))
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-5876590865970965788)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 4627644473428608179 in succeeded_hashes:  # avoid duplicate inserts
-            instance = aircraft_maintenance_1 = AircraftMaintenance(id=1, aircraft_id=1, date_of_maintenance=date(2023, 9, 10), next_due_date=date(2024, 9, 10), remarks="Engine check")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(4627644473428608179)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 8202608691062206681 in succeeded_hashes:  # avoid duplicate inserts
-            instance = aircraft_maintenance_2 = AircraftMaintenance(id=2, aircraft_id=2, date_of_maintenance=date(2023, 8, 20), next_due_date=date(2024, 8, 20), remarks="Tyre replacement")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(8202608691062206681)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 73209183686926092 in succeeded_hashes:  # avoid duplicate inserts
-            instance = aircraft_maintenance_3 = AircraftMaintenance(id=3, aircraft_id=3, date_of_maintenance=date(2023, 7, 15), next_due_date=date(2024, 7, 15), remarks="Hydraulic system check")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(73209183686926092)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 6476099530252141640 in succeeded_hashes:  # avoid duplicate inserts
-            instance = aircraft_maintenance_4 = AircraftMaintenance(id=4, aircraft_id=4, date_of_maintenance=date(2023, 6, 25), next_due_date=date(2024, 6, 25), remarks="Avionics update")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(6476099530252141640)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 4614683965399851321 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airport_facility_1 = AirportFacility(id=1, airport_id=1, facility_type="Lounge", description="VIP Lounge")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(4614683965399851321)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not 6248321400664752548 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airport_facility_2 = AirportFacility(id=2, airport_id=2, facility_type="Parking", description="Long-term parking")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(6248321400664752548)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -8013354157407079435 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airport_facility_3 = AirportFacility(id=3, airport_id=3, facility_type="WiFi", description="Free internet access")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-8013354157407079435)
-    except Exception as e:
-        has_errors = True
-        if 'UNIQUE' in str(e) and restart_count > 1:
-            pass
-        else:
-            error_str = f"Error adding variable to session: {e}"
-            if not error_str in data_log:
-                data_log.append(error_str)
-        if not restart_count in [2,3]:
-            session.rollback()
-
-    try:
-        if not -2680888014128049158 in succeeded_hashes:  # avoid duplicate inserts
-            instance = airport_facility_4 = AirportFacility(id=4, airport_id=4, facility_type="Shopping", description="Duty-free shops")
-            session.add(instance)
-            session.commit()
-            succeeded_hashes.add(-2680888014128049158)
+            succeeded_hashes.add(-2916037213486577849)
     except Exception as e:
         has_errors = True
         if 'UNIQUE' in str(e) and restart_count > 1:

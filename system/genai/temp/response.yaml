@@ -4,438 +4,148 @@
   "code": |-
     class Airport(Base):
         __tablename__ = 'airport'
+
         id = Column(Integer, primary_key=True, autoincrement=True)
         name = Column(String)
-        location = Column(String)
-        code = Column(String(3))
+        code = Column(String)
+        city = Column(String)
+        country = Column(String)
+        latitude = Column(Decimal)
+        longitude = Column(Decimal)
   "description": |-
-    This table stores information about the airports.
+    Represents an airport entity.
   "name": |-
     Airport
 - "classname": |-
-    Flight
-  "code": |-
-    class Flight(Base):
-        __tablename__ = 'flight'
-        id = Column(Integer, primary_key=True, autoincrement=True)
-        flight_number = Column(String)
-        departure_airport_id = Column(Integer, ForeignKey('airport.id'))
-        arrival_airport_id = Column(Integer, ForeignKey('airport.id'))
-        scheduled_departure = Column(DateTime)
-        scheduled_arrival = Column(DateTime)
-        aircraft_id = Column(Integer, ForeignKey('aircraft.id'))
-  "description": |-
-    This table stores information about flights including departure and arrival details.
-  "name": |-
-    Flight
-- "classname": |-
-    Aircraft
-  "code": |-
-    class Aircraft(Base):
-        __tablename__ = 'aircraft'
+    Airplane
+  "code": |
+    class Airplane(Base):
+        __tablename__ = 'airplane'
+
         id = Column(Integer, primary_key=True, autoincrement=True)
         model = Column(String)
         seating_capacity = Column(Integer)
+        passenger_count = Column(Integer)  # derived
   "description": |-
-    This table captures details of different aircrafts.
+    Represents an airplane entity.
   "name": |-
-    Aircraft
+    Airplane
 - "classname": |-
     Passenger
-  "code": |-
+  "code": |
     class Passenger(Base):
         __tablename__ = 'passenger'
+
         id = Column(Integer, primary_key=True, autoincrement=True)
         name = Column(String)
-        passport_number = Column(String)
-        birthdate = Column(Date)
-        flight_id = Column(Integer, ForeignKey('flight.id'))
+        email = Column(String)
+        luggage_weight_total = Column(Decimal)  # derived attribute, corrected
+        airplane_id = Column(Integer, ForeignKey('airplane.id'))
   "description": |-
-    This table records the details of passengers.
+    Represents a passenger entity with a link to airplane.
   "name": |-
     Passenger
 - "classname": |-
-    Pilot
-  "code": |-
-    class Pilot(Base):
-        __tablename__ = 'pilot'
-        id = Column(Integer, primary_key=True, autoincrement=True)
-        name = Column(String)
-        license_number = Column(String)
-        years_of_experience = Column(Integer)
-  "description": |-
-    This table contains information about pilots.
-  "name": |-
-    Pilot
-- "classname": |-
-    CrewMember
-  "code": |-
-    class CrewMember(Base):
-        __tablename__ = 'crew_member'
-        id = Column(Integer, primary_key=True, autoincrement=True)
-        name = Column(String)
-        position = Column(String)
-        flight_id = Column(Integer, ForeignKey('flight.id'))
-  "description": |-
-    This table consists of crew members working on flights.
-  "name": |-
-    CrewMember
-- "classname": |-
-    Booking
-  "code": |-
-    class Booking(Base):
-        __tablename__ = 'booking'
+    Luggage
+  "code": |
+    class Luggage(Base):
+        __tablename__ = 'luggage'
+
         id = Column(Integer, primary_key=True, autoincrement=True)
         passenger_id = Column(Integer, ForeignKey('passenger.id'))
-        flight_id = Column(Integer, ForeignKey('flight.id'))
-        status = Column(String)
-        booking_date = Column(Date)
+        weight = Column(Decimal)
   "description": |-
-    This table stores booking information.
+    Represents luggage linked to a passenger.
   "name": |-
-    Booking
-- "classname": |-
-    Baggage
-  "code": |-
-    class Baggage(Base):
-        __tablename__ = 'baggage'
-        id = Column(Integer, primary_key=True, autoincrement=True)
-        passenger_id = Column(Integer, ForeignKey('passenger.id'))
-        weight = Column(Integer)
-        baggage_type = Column(String)
-  "description": |-
-    This table records baggage details for passengers.
-  "name": |-
-    Baggage
-- "classname": |-
-    Airline
-  "code": |-
-    class Airline(Base):
-        __tablename__ = 'airline'
-        id = Column(Integer, primary_key=True, autoincrement=True)
-        name = Column(String)
-        code = Column(String(3))
-  "description": |-
-    This table provides details about different airlines.
-  "name": |-
-    Airline
-- "classname": |-
-    PilotLicense
-  "code": |-
-    class PilotLicense(Base):
-        __tablename__ = 'pilot_license'
-        id = Column(Integer, primary_key=True, autoincrement=True)
-        pilot_id = Column(Integer, ForeignKey('pilot.id'))
-        license_type = Column(String)
-        expiry_date = Column(Date)
-  "description": |-
-    This table contains license details for pilots.
-  "name": |-
-    PilotLicense
-- "classname": |-
-    AircraftMaintenance
-  "code": |-
-    class AircraftMaintenance(Base):
-        __tablename__ = 'aircraft_maintenance'
-        id = Column(Integer, primary_key=True, autoincrement=True)
-        aircraft_id = Column(Integer, ForeignKey('aircraft.id'))
-        date_of_maintenance = Column(Date)
-        next_due_date = Column(Date)
-        remarks = Column(String)
-  "description": |-
-    This table logs maintenance details of aircraft.
-  "name": |-
-    AircraftMaintenance
-- "classname": |-
-    AirportFacility
-  "code": |-
-    class AirportFacility(Base):
-        __tablename__ = 'airport_facility'
-        id = Column(Integer, primary_key=True, autoincrement=True)
-        airport_id = Column(Integer, ForeignKey('airport.id'))
-        facility_type = Column(String)
-        description = Column(String)
-  "description": |-
-    Records various facilities available at airpots.
-  "name": |-
-    AirportFacility
+    Luggage
 "name": |-
-  AviationManagementSystem
+  AirportSystem
 "rules":
 - "code": |-
-    Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
+    Rule.sum(derive=Passenger.luggage_weight_total, as_sum_of=Luggage.weight)
   "description": |-
-    Derive the number of passengers on a flight.
+    Sum total luggage weight for each passenger.
   "entity": |-
-    Flight
+    Passenger
   "name": |-
-    Passenger Count on Flight
+    Sum Luggage Weight
   "use_case": |-
     General
 - "code": |-
-    Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
+    Rule.constraint(validate=Airplane, as_condition=lambda row: row.passenger_count <= row.seating_capacity, error_msg="Airplane value total ({row.passenger_count}) exceeds limit ({row.seating_capacity})")
   "description": |-
-    Ensure that the number of passengers does not exceed the aircraft seating capacity.
+    A airplane's passengers must be less than its seating capacity.
   "entity": |-
-    Flight
+    Airplane
   "name": |-
-    Seating Capacity Constraint
+    Passenger count Constraint
   "use_case": |-
     General
 "test_data": |-
-  """Create test data for all tables.""" """
-  # Airports
-  airport_1 = Airport(id=1, name="JFK International", location="New York, USA", code="JFK")
-  airport_2 = Airport(id=2, name="Los Angeles International", location="Los Angeles, USA", code="LAX")
-  airport_3 = Airport(id=3, name="Heathrow", location="London, UK", code="LHR")
-  airport_4 = Airport(id=4, name="Tokyo Haneda", location="Tokyo, Japan", code="HND")
-  # Flights
-  flight_1 = Flight(id=1, flight_number="AA100", departure_airport_id=1, arrival_airport_id=2, scheduled_departure=date(2023, 10, 1), scheduled_arrival=date(2023, 10, 1), aircraft_id=1)
-  flight_2 = Flight(id=2, flight_number="BA256", departure_airport_id=3, arrival_airport_id=1, scheduled_departure=date(2023, 10, 2), scheduled_arrival=date(2023, 10, 2), aircraft_id=2)
-  flight_3 = Flight(id=3, flight_number="JL789", departure_airport_id=4, arrival_airport_id=3, scheduled_departure=date(2023, 10, 3), scheduled_arrival=date(2023, 10, 3), aircraft_id=3)
-  flight_4 = Flight(id=4, flight_number="QF11", departure_airport_id=2, arrival_airport_id=4, scheduled_departure=date(2023, 10, 4), scheduled_arrival=date(2023, 10, 4), aircraft_id=4)
-  # Aircrafts
-  aircraft_1 = Aircraft(id=1, model="Boeing 777", seating_capacity=300)
-  aircraft_2 = Aircraft(id=2, model="Airbus A380", seating_capacity=500)
-  aircraft_3 = Aircraft(id=3, model="Boeing 787", seating_capacity=250)
-  aircraft_4 = Aircraft(id=4, model="Airbus A320", seating_capacity=180)
-  # Passengers
-  passenger_1 = Passenger(id=1, name="John Doe", passport_number="A1234567", birthdate=date(1985, 5, 20), flight_id=1)
-  passenger_2 = Passenger(id=2, name="Jane Smith", passport_number="B7654321", birthdate=date(1990, 8, 15), flight_id=1)
-  passenger_3 = Passenger(id=3, name="Alice Brown", passport_number="C2345678", birthdate=date(1992, 1, 10), flight_id=2)
-  passenger_4 = Passenger(id=4, name="Bob Johnson", passport_number="D8765432", birthdate=date(1988, 7, 25), flight_id=2)
-  # Pilots
-  pilot_1 = Pilot(id=1, name="Captain Lewis", license_number="PL789123", years_of_experience=15)
-  pilot_2 = Pilot(id=2, name="Captain Clarke", license_number="PL456789", years_of_experience=20)
-  pilot_3 = Pilot(id=3, name="Captain Adams", license_number="PL123456", years_of_experience=10)
-  pilot_4 = Pilot(id=4, name="Captain Edwards", license_number="PL987654", years_of_experience=5)
-  # Crew Members
-  crew_member_1 = CrewMember(id=1, name="Kelly Williams", position="Flight Attendant", flight_id=1)
-  crew_member_2 = CrewMember(id=2, name="Peter Clark", position="Co-Pilot", flight_id=2)
-  crew_member_3 = CrewMember(id=3, name="Susan Taylor", position="Navigator", flight_id=3)
-  crew_member_4 = CrewMember(id=4, name="Tom Hanks", position="Flight Engineer", flight_id=4)
-  # Bookings
-  booking_1 = Booking(id=1, passenger_id=1, flight_id=1, status="Confirmed", booking_date=date(2023, 9, 1))
-  booking_2 = Booking(id=2, passenger_id=2, flight_id=1, status="Cancelled", booking_date=date(2023, 9, 5))
-  booking_3 = Booking(id=3, passenger_id=3, flight_id=2, status="Confirmed", booking_date=date(2023, 9, 6))
-  booking_4 = Booking(id=4, passenger_id=4, flight_id=2, status="Pending", booking_date=date(2023, 9, 10))
-  # Baggage
-  baggage_1 = Baggage(id=1, passenger_id=1, weight=20, baggage_type="Checked")
-  baggage_2 = Baggage(id=2, passenger_id=2, weight=15, baggage_type="Carry-On")
-  baggage_3 = Baggage(id=3, passenger_id=3, weight=25, baggage_type="Checked")
-  baggage_4 = Baggage(id=4, passenger_id=4, weight=17, baggage_type="Carry-On")
-  # Airlines
-  airline_1 = Airline(id=1, name="American Airlines", code="AA")
-  airline_2 = Airline(id=2, name="British Airways", code="BA")
-  airline_3 = Airline(id=3, name="Japan Airlines", code="JL")
-  airline_4 = Airline(id=4, name="Qantas", code="QF")
-  # Pilot Licenses
-  pilot_license_1 = PilotLicense(id=1, pilot_id=1, license_type="Commercial", expiry_date=date(2025, 5, 20))
-  pilot_license_2 = PilotLicense(id=2, pilot_id=2, license_type="ATPL", expiry_date=date(2026, 8, 15))
-  pilot_license_3 = PilotLicense(id=3, pilot_id=3, license_type="Commercial", expiry_date=date(2024, 1, 10))
-  pilot_license_4 = PilotLicense(id=4, pilot_id=4, license_type="PPL", expiry_date=date(2025, 7, 25))
-  # Aircraft Maintenances
-  aircraft_maintenance_1 = AircraftMaintenance(id=1, aircraft_id=1, date_of_maintenance=date(2023, 9, 10), next_due_date=date(2024, 9, 10), remarks="Engine check")
-  aircraft_maintenance_2 = AircraftMaintenance(id=2, aircraft_id=2, date_of_maintenance=date(2023, 8, 20), next_due_date=date(2024, 8, 20), remarks="Tyre replacement")
-  aircraft_maintenance_3 = AircraftMaintenance(id=3, aircraft_id=3, date_of_maintenance=date(2023, 7, 15), next_due_date=date(2024, 7, 15), remarks="Hydraulic system check")
-  aircraft_maintenance_4 = AircraftMaintenance(id=4, aircraft_id=4, date_of_maintenance=date(2023, 6, 25), next_due_date=date(2024, 6, 25), remarks="Avionics update")
-  # Airport Facilities
-  airport_facility_1 = AirportFacility(id=1, airport_id=1, facility_type="Lounge", description="VIP Lounge")
-  airport_facility_2 = AirportFacility(id=2, airport_id=2, facility_type="Parking", description="Long-term parking")
-  airport_facility_3 = AirportFacility(id=3, airport_id=3, facility_type="WiFi", description="Free internet access")
-  airport_facility_4 = AirportFacility(id=4, airport_id=4, facility_type="Shopping", description="Duty-free shops")
+  Creating 4 rows of test data for each model.
 "test_data_rows":
 - "code": |-
-    airport_1 = Airport(id=1, name="JFK International", location="New York, USA", code="JFK")
+    airport1 = Airport(name="Heathrow", code="LHR", city="London", country="UK", latitude=Decimal('51.47'), longitude=Decimal('-0.454'))
   "test_data_row_variable": |-
-    airport_1
+    airport1
 - "code": |-
-    airport_2 = Airport(id=2, name="Los Angeles International", location="Los Angeles, USA", code="LAX")
+    airport2 = Airport(name="JFK", code="JFK", city="New York", country="USA", latitude=Decimal('40.6413'), longitude=Decimal('-73.7781'))
   "test_data_row_variable": |-
-    airport_2
+    airport2
 - "code": |-
-    airport_3 = Airport(id=3, name="Heathrow", location="London, UK", code="LHR")
+    airport3 = Airport(name="Haneda", code="HND", city="Tokyo", country="Japan", latitude=Decimal('35.5522'), longitude=Decimal('139.7798'))
   "test_data_row_variable": |-
-    airport_3
+    airport3
 - "code": |-
-    airport_4 = Airport(id=4, name="Tokyo Haneda", location="Tokyo, Japan", code="HND")
+    airport4 = Airport(name="Schiphol", code="AMS", city="Amsterdam", country="Netherlands", latitude=Decimal('52.3105'), longitude=Decimal('4.7683'))
   "test_data_row_variable": |-
-    airport_4
+    airport4
 - "code": |-
-    flight_1 = Flight(id=1, flight_number="AA100", departure_airport_id=1, arrival_airport_id=2, scheduled_departure=date(2023, 10, 1), scheduled_arrival=date(2023, 10, 1), aircraft_id=1)
+    airplane1 = Airplane(model="Boeing 777-200", seating_capacity=300, passenger_count=290)
   "test_data_row_variable": |-
-    flight_1
+    airplane1
 - "code": |-
-    flight_2 = Flight(id=2, flight_number="BA256", departure_airport_id=3, arrival_airport_id=1, scheduled_departure=date(2023, 10, 2), scheduled_arrival=date(2023, 10, 2), aircraft_id=2)
+    airplane2 = Airplane(model="Airbus A320", seating_capacity=150, passenger_count=148)
   "test_data_row_variable": |-
-    flight_2
+    airplane2
 - "code": |-
-    flight_3 = Flight(id=3, flight_number="JL789", departure_airport_id=4, arrival_airport_id=3, scheduled_departure=date(2023, 10, 3), scheduled_arrival=date(2023, 10, 3), aircraft_id=3)
+    airplane3 = Airplane(model="Boeing 737", seating_capacity=200, passenger_count=198)
   "test_data_row_variable": |-
-    flight_3
+    airplane3
 - "code": |-
-    flight_4 = Flight(id=4, flight_number="QF11", departure_airport_id=2, arrival_airport_id=4, scheduled_departure=date(2023, 10, 4), scheduled_arrival=date(2023, 10, 4), aircraft_id=4)
+    airplane4 = Airplane(model="Airbus A380", seating_capacity=500, passenger_count=480)
   "test_data_row_variable": |-
-    flight_4
+    airplane4
 - "code": |-
-    aircraft_1 = Aircraft(id=1, model="Boeing 777", seating_capacity=300)
+    passenger1 = Passenger(name="John Doe", email="johndoe@example.com", luggage_weight_total=Decimal('25.5'), airplane_id=1)
   "test_data_row_variable": |-
-    aircraft_1
+    passenger1
 - "code": |-
-    aircraft_2 = Aircraft(id=2, model="Airbus A380", seating_capacity=500)
+    passenger2 = Passenger(name="Jane Smith", email="janesmith@example.com", luggage_weight_total=Decimal('22.0'), airplane_id=1)
   "test_data_row_variable": |-
-    aircraft_2
+    passenger2
 - "code": |-
-    aircraft_3 = Aircraft(id=3, model="Boeing 787", seating_capacity=250)
+    passenger3 = Passenger(name="Alice Brown", email="alicebrown@example.com", luggage_weight_total=Decimal('30.0'), airplane_id=2)
   "test_data_row_variable": |-
-    aircraft_3
+    passenger3
 - "code": |-
-    aircraft_4 = Aircraft(id=4, model="Airbus A320", seating_capacity=180)
+    passenger4 = Passenger(name="Bob White", email="bobwhite@example.com", luggage_weight_total=Decimal('18.0'), airplane_id=2)
   "test_data_row_variable": |-
-    aircraft_4
+    passenger4
 - "code": |-
-    passenger_1 = Passenger(id=1, name="John Doe", passport_number="A1234567", birthdate=date(1985, 5, 20), flight_id=1)
+    luggage1 = Luggage(passenger_id=1, weight=Decimal('5.5'))
   "test_data_row_variable": |-
-    passenger_1
+    luggage1
 - "code": |-
-    passenger_2 = Passenger(id=2, name="Jane Smith", passport_number="B7654321", birthdate=date(1990, 8, 15), flight_id=1)
+    luggage2 = Luggage(passenger_id=1, weight=Decimal('3.0'))
   "test_data_row_variable": |-
-    passenger_2
+    luggage2
 - "code": |-
-    passenger_3 = Passenger(id=3, name="Alice Brown", passport_number="C2345678", birthdate=date(1992, 1, 10), flight_id=2)
+    luggage3 = Luggage(passenger_id=2, weight=Decimal('8.0'))
   "test_data_row_variable": |-
-    passenger_3
+    luggage3
 - "code": |-
-    passenger_4 = Passenger(id=4, name="Bob Johnson", passport_number="D8765432", birthdate=date(1988, 7, 25), flight_id=2)
+    luggage4 = Luggage(passenger_id=2, weight=Decimal('14.0'))
   "test_data_row_variable": |-
-    passenger_4
-- "code": |-
-    pilot_1 = Pilot(id=1, name="Captain Lewis", license_number="PL789123", years_of_experience=15)
-  "test_data_row_variable": |-
-    pilot_1
-- "code": |-
-    pilot_2 = Pilot(id=2, name="Captain Clarke", license_number="PL456789", years_of_experience=20)
-  "test_data_row_variable": |-
-    pilot_2
-- "code": |-
-    pilot_3 = Pilot(id=3, name="Captain Adams", license_number="PL123456", years_of_experience=10)
-  "test_data_row_variable": |-
-    pilot_3
-- "code": |-
-    pilot_4 = Pilot(id=4, name="Captain Edwards", license_number="PL987654", years_of_experience=5)
-  "test_data_row_variable": |-
-    pilot_4
-- "code": |-
-    crew_member_1 = CrewMember(id=1, name="Kelly Williams", position="Flight Attendant", flight_id=1)
-  "test_data_row_variable": |-
-    crew_member_1
-- "code": |-
-    crew_member_2 = CrewMember(id=2, name="Peter Clark", position="Co-Pilot", flight_id=2)
-  "test_data_row_variable": |-
-    crew_member_2
-- "code": |-
-    crew_member_3 = CrewMember(id=3, name="Susan Taylor", position="Navigator", flight_id=3)
-  "test_data_row_variable": |-
-    crew_member_3
-- "code": |-
-    crew_member_4 = CrewMember(id=4, name="Tom Hanks", position="Flight Engineer", flight_id=4)
-  "test_data_row_variable": |-
-    crew_member_4
-- "code": |-
-    booking_1 = Booking(id=1, passenger_id=1, flight_id=1, status="Confirmed", booking_date=date(2023, 9, 1))
-  "test_data_row_variable": |-
-    booking_1
-- "code": |-
-    booking_2 = Booking(id=2, passenger_id=2, flight_id=1, status="Cancelled", booking_date=date(2023, 9, 5))
-  "test_data_row_variable": |-
-    booking_2
-- "code": |-
-    booking_3 = Booking(id=3, passenger_id=3, flight_id=2, status="Confirmed", booking_date=date(2023, 9, 6))
-  "test_data_row_variable": |-
-    booking_3
-- "code": |-
-    booking_4 = Booking(id=4, passenger_id=4, flight_id=2, status="Pending", booking_date=date(2023, 9, 10))
-  "test_data_row_variable": |-
-    booking_4
-- "code": |-
-    baggage_1 = Baggage(id=1, passenger_id=1, weight=20, baggage_type="Checked")
-  "test_data_row_variable": |-
-    baggage_1
-- "code": |-
-    baggage_2 = Baggage(id=2, passenger_id=2, weight=15, baggage_type="Carry-On")
-  "test_data_row_variable": |-
-    baggage_2
-- "code": |-
-    baggage_3 = Baggage(id=3, passenger_id=3, weight=25, baggage_type="Checked")
-  "test_data_row_variable": |-
-    baggage_3
-- "code": |-
-    baggage_4 = Baggage(id=4, passenger_id=4, weight=17, baggage_type="Carry-On")
-  "test_data_row_variable": |-
-    baggage_4
-- "code": |-
-    airline_1 = Airline(id=1, name="American Airlines", code="AA")
-  "test_data_row_variable": |-
-    airline_1
-- "code": |-
-    airline_2 = Airline(id=2, name="British Airways", code="BA")
-  "test_data_row_variable": |-
-    airline_2
-- "code": |-
-    airline_3 = Airline(id=3, name="Japan Airlines", code="JL")
-  "test_data_row_variable": |-
-    airline_3
-- "code": |-
-    airline_4 = Airline(id=4, name="Qantas", code="QF")
-  "test_data_row_variable": |-
-    airline_4
-- "code": |-
-    pilot_license_1 = PilotLicense(id=1, pilot_id=1, license_type="Commercial", expiry_date=date(2025, 5, 20))
-  "test_data_row_variable": |-
-    pilot_license_1
-- "code": |-
-    pilot_license_2 = PilotLicense(id=2, pilot_id=2, license_type="ATPL", expiry_date=date(2026, 8, 15))
-  "test_data_row_variable": |-
-    pilot_license_2
-- "code": |-
-    pilot_license_3 = PilotLicense(id=3, pilot_id=3, license_type="Commercial", expiry_date=date(2024, 1, 10))
-  "test_data_row_variable": |-
-    pilot_license_3
-- "code": |-
-    pilot_license_4 = PilotLicense(id=4, pilot_id=4, license_type="PPL", expiry_date=date(2025, 7, 25))
-  "test_data_row_variable": |-
-    pilot_license_4
-- "code": |-
-    aircraft_maintenance_1 = AircraftMaintenance(id=1, aircraft_id=1, date_of_maintenance=date(2023, 9, 10), next_due_date=date(2024, 9, 10), remarks="Engine check")
-  "test_data_row_variable": |-
-    aircraft_maintenance_1
-- "code": |-
-    aircraft_maintenance_2 = AircraftMaintenance(id=2, aircraft_id=2, date_of_maintenance=date(2023, 8, 20), next_due_date=date(2024, 8, 20), remarks="Tyre replacement")
-  "test_data_row_variable": |-
-    aircraft_maintenance_2
-- "code": |-
-    aircraft_maintenance_3 = AircraftMaintenance(id=3, aircraft_id=3, date_of_maintenance=date(2023, 7, 15), next_due_date=date(2024, 7, 15), remarks="Hydraulic system check")
-  "test_data_row_variable": |-
-    aircraft_maintenance_3
-- "code": |-
-    aircraft_maintenance_4 = AircraftMaintenance(id=4, aircraft_id=4, date_of_maintenance=date(2023, 6, 25), next_due_date=date(2024, 6, 25), remarks="Avionics update")
-  "test_data_row_variable": |-
-    aircraft_maintenance_4
-- "code": |-
-    airport_facility_1 = AirportFacility(id=1, airport_id=1, facility_type="Lounge", description="VIP Lounge")
-  "test_data_row_variable": |-
-    airport_facility_1
-- "code": |-
-    airport_facility_2 = AirportFacility(id=2, airport_id=2, facility_type="Parking", description="Long-term parking")
-  "test_data_row_variable": |-
-    airport_facility_2
-- "code": |-
-    airport_facility_3 = AirportFacility(id=3, airport_id=3, facility_type="WiFi", description="Free internet access")
-  "test_data_row_variable": |-
-    airport_facility_3
-- "code": |-
-    airport_facility_4 = AirportFacility(id=4, airport_id=4, facility_type="Shopping", description="Duty-free shops")
-  "test_data_row_variable": |-
-    airport_facility_4
-"test_data_sqlite": |-
-  INSERT INTO airport (id, name, location, code) VALUES (1, 'JFK International', 'New York, USA', 'JFK');INSERT INTO flight (id, flight_number, departure_airport_id, arrival_airport_id, scheduled_departure, scheduled_arrival, aircraft_id) VALUES (1, 'AA100', 1, 2, '2023-10-01 00:00:00', '2023-10-01 00:00:00', 1);INSERT INTO aircraft (id, model, seating_capacity) VALUES (1, 'Boeing 777', 300);INSERT INTO passenger (id, name, passport_number, birthdate, flight_id) VALUES (1, 'John Doe', 'A1234567', '1985-05-20', 1);
+    luggage4
+"test_data_sqlite": ""

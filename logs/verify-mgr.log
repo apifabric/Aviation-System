@@ -1,8 +1,8 @@
 
-API Logic Project Server Setup (01JJ98C7JKSFXQS61M2BT8RCXP) Starting with CLI args: 
-.. /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/alp_verify_only.py
+API Logic Project Server Setup (01JJ9C1WHR0PNH43BQE1R0B3KS) Starting with CLI args: 
+.. /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/alp_verify_only.py
 
-Created August 03, 2024 09:34:01 at /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
+Created August 03, 2024 09:34:01 at /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS
 
 
 server_setup - get_args: Config args: 
@@ -12,7 +12,7 @@ server_setup - get_args: Config args:
 .. http_scheme: http, api_prefix: /api, 
 .. | verbose: False, create_and_run: False
 config - get_cli_args: Getting cli args, with hostname=41ba94bbfeea on local_ip=172.18.0.2
-config - get_cli_args: WSGI - no args, using creation default host/port..  sys.argv = ['/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/alp_verify_only.py']
+config - get_cli_args: WSGI - no args, using creation default host/port..  sys.argv = ['/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/alp_verify_only.py']
 
 
 server_setup - get_args: CLI args: 
@@ -26,7 +26,7 @@ server_setup - get_args: ENV args:
 .. flask_host: 0.0.0.0, port: 4444, 
 .. swagger_host: localhost, swagger_port: 8282, 
 .. client_uri: None, 
-.. http_scheme: http, api_prefix: /01JJ98C7JKSFXQS61M2BT8RCXP, 
+.. http_scheme: http, api_prefix: /01JJ9C1WHR0PNH43BQE1R0B3KS, 
 .. | verbose: False, create_and_run: False
 
 
@@ -35,7 +35,7 @@ server_setup - get_args: ENV args:
 .. flask_host: 0.0.0.0, port: 4444, 
 .. swagger_host: localhost, swagger_port: 8282, 
 .. client_uri: None, 
-.. http_scheme: http, api_prefix: /01JJ98C7JKSFXQS61M2BT8RCXP, 
+.. http_scheme: http, api_prefix: /01JJ9C1WHR0PNH43BQE1R0B3KS, 
 .. | verbose: False, create_and_run: False
 
 
@@ -44,7 +44,7 @@ Config args:
 .. flask_host: 0.0.0.0, port: 4444, 
 .. swagger_host: localhost, swagger_port: 8282, 
 .. client_uri: None, 
-.. http_scheme: http, api_prefix: /01JJ98C7JKSFXQS61M2BT8RCXP, 
+.. http_scheme: http, api_prefix: /01JJ9C1WHR0PNH43BQE1R0B3KS, 
 .. | verbose: False, create_and_run: False
 config - get_cli_args: Getting cli args, with hostname=41ba94bbfeea on local_ip=172.18.0.2
 config - get_cli_args: No arguments - using creation default host/port
@@ -53,35 +53,34 @@ CLI args:
 .. flask_host: 0.0.0.0, port: 4444, 
 .. swagger_host: localhost, swagger_port: 8282, 
 .. client_uri: None, 
-.. http_scheme: http, api_prefix: /01JJ98C7JKSFXQS61M2BT8RCXP, 
+.. http_scheme: http, api_prefix: /01JJ9C1WHR0PNH43BQE1R0B3KS, 
 .. | verbose: False, create_and_run: False
 
 ENV args: 
 .. flask_host: 0.0.0.0, port: 4444, 
 .. swagger_host: localhost, swagger_port: 8282, 
 .. client_uri: None, 
-.. http_scheme: http, api_prefix: /01JJ98C7JKSFXQS61M2BT8RCXP, 
+.. http_scheme: http, api_prefix: /01JJ9C1WHR0PNH43BQE1R0B3KS, 
 .. | verbose: False, create_and_run: False
 
 
-sqlite_db_path validity check with db_uri: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/db.sqlite
-	.. Absolute: //opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/db.sqlite
+sqlite_db_path validity check with db_uri: sqlite:////opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/database/db.sqlite
+	.. Absolute: //opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/database/db.sqlite
 	.. sqlite_db_path is a valid file
 
 Data Model Loaded, customizing...
 ..discovered models: []
 LogicBank Activation - declare_logic.py
-Loading rules from /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules
-01JJ98C974B461Y5G2H0AVHFDC rule file: logic/wg_rules/Ticket_Price_Constraint.py
-01JJ98FCW8XFN551DKCTSQ9AA0 rule file: logic/wg_rules/Passenger_Count_on_Flight.py
-01JJ98FCWP15E57YG6G1JS13ZB rule file: logic/wg_rules/Seating_Capacity_Constraint.py
+Loading rules from /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/wg_rules
+01JJ9C1Y7AT1YKK2R2P7WHBKBJ rule file: logic/wg_rules/Ticket_Price_Constraint.py
+01JJ9C1YCMGESPW2WF2KWA0JHX rule file: logic/wg_rules/Passenger_Luggage_Weight_Sum.py
 
-[34mVerifying rule: Ticket_Price_Constraint - 01JJ98C974B461Y5G2H0AVHFDC[0m
+[34mVerifying rule: Ticket_Price_Constraint - 01JJ9C1Y7AT1YKK2R2P7WHBKBJ[0m
 name 'Ticket' is not defined
 Traceback (most recent call last):
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 144, in verify_rules
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/load_verify_rules.py", line 144, in verify_rules
     rule_module.init_rule()
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
     Rule.constraint(validate=Ticket,
                              ^^^^^^
 NameError: name 'Ticket' is not defined
@@ -90,202 +89,46 @@ Rule.constraint(validate=Ticket,
                 as_condition=lambda row: row.price > 0,
                 error_msg="Ticket price ({row.price}) must be greater than zero")
 [33mNameError: name 'Ticket' is not defined[0m
-01JJ98C974B461Y5G2H0AVHFDC rule file: logic/wg_rules/Ticket_Price_Constraint.py
-01JJ98FCW8XFN551DKCTSQ9AA0 rule file: logic/wg_rules/Passenger_Count_on_Flight.py
-01JJ98FCWP15E57YG6G1JS13ZB rule file: logic/wg_rules/Seating_Capacity_Constraint.py
+01JJ9C1Y7AT1YKK2R2P7WHBKBJ rule file: logic/wg_rules/Ticket_Price_Constraint.py
+01JJ9C1YCMGESPW2WF2KWA0JHX rule file: logic/wg_rules/Passenger_Luggage_Weight_Sum.py
 
-[34mVerifying rule: Passenger_Count_on_Flight - 01JJ98FCW8XFN551DKCTSQ9AA0[0m
-type object 'Flight' has no attribute 'passenger_count'
-Traceback (most recent call last):
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 144, in verify_rules
-    rule_module.init_rule()
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Passenger_Count_on_Flight.py", line 6, in init_rule
-    Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
-                      ^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: type object 'Flight' has no attribute 'passenger_count'
-[31mFailed to verify accepted rule code
-Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
-[33mAttributeError: type object 'Flight' has no attribute 'passenger_count'[0m
-
-[34mVerifying rule: Seating_Capacity_Constraint - 01JJ98FCWP15E57YG6G1JS13ZB[0m
+[34mVerifying rule: Passenger_Luggage_Weight_Sum - 01JJ9C1YCMGESPW2WF2KWA0JHX[0m
 
 The following rules have been loaded
-Rule Bank[0x7752e56fa450] (loaded 2025-01-23 09:39:17.582185)
-Mapped Class[Flight] rules:
-  Constraint Function: None 
+Rule Bank[0x7c5bbd5c9490] (loaded 2025-01-23 10:42:42.067381)
+Mapped Class[Passenger] rules:
+  Derive <class 'database.models.Passenger'>.luggage_weight_total as Sum(Luggage.weight Where  - None)
 
 The following attributes have been referenced
 
-..Flight.passenger_count: constraint
-..Flight.aircraft.seating_capacity: constraint
-LBActivateException: 
-[]
-['Flight.passenger_count: constraint']
-LogicBank Activation Error
-Traceback (most recent call last):
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 145, in verify_rules
-    LogicBank.activate(session=safrs.DB.session, activator=rule_module.init_rule)
-  File "/usr/local/lib/python3.12/site-packages/logic_bank/logic_bank.py", line 149, in activate
-    raise LBActivateException(rule_bank.invalid_rules, missing_attributes)
-logic_bank.exceptions.LBActivateException: LBActivateException: 
-[]
-['Flight.passenger_count: constraint']
-LogicBank Activation Error
-[31mFailed to verify accepted rule code
-Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
-[33mLBActivateException: LBActivateException: 
-[]
-['Flight.passenger_count: constraint']
-LogicBank Activation Error[0m
+..Passenger.luggage_weight_total: aggregate derivation
+..Luggage.weight: sum derived from
+
+The following rules have been activated
+Rule Bank[0x7c5bbd5c9490] (loaded 2025-01-23 10:42:42.067381)
+Mapped Class[Passenger] rules:
+  Derive <class 'database.models.Passenger'>.luggage_weight_total as Sum(Luggage.weight Where  - None)
+Logic Bank 01.20.21 - 3 rules loaded
+
+[32mActivated rule 01JJ9C1YCMGESPW2WF2KWA0JHX[0m
 
 The following rules have been loaded
-Rule Bank[0x7752e56fa450] (loaded 2025-01-23 09:39:17.582185)
-Mapped Class[Flight] rules:
-  Constraint Function: None 
+Rule Bank[0x7c5bbd5c9490] (loaded 2025-01-23 10:42:42.067381)
+Mapped Class[Passenger] rules:
+  Derive <class 'database.models.Passenger'>.luggage_weight_total as Sum(Luggage.weight Where  - None)
 
 The following attributes have been referenced
 
-..Flight.passenger_count: constraint
-..Flight.aircraft.seating_capacity: constraint
-..Flight.passenger_count: constraint
-..Flight.aircraft.seating_capacity: constraint
+..Passenger.luggage_weight_total: aggregate derivation
+..Luggage.weight: sum derived from
 
 Logic Bank Activation Error -- see https://apilogicserver.github.io/Docs/WebGenAI-CLI/#recovery-options
 Invalid Rules:  [NameError("name 'Ticket' is not defined")]
-Missing Attrs (try als genai-utils --fixup): ['Flight.passenger_count: constraint', 'Flight.passenger_count: constraint']
 
 
-Exposing /Aircraft
-Exposing /AircraftMaintenance
-Exposing /Airline
+Exposing /Airplane
 Exposing /Airport
-Exposing /AirportFacility
-Exposing /Baggage
-Exposing /Booking
-Exposing /CrewMember
-Exposing /Flight
+Exposing /Luggage
 Exposing /Passenger
-Exposing /Pilot
-Exposing /PilotLicense
 Declare   API - api/expose_api_models, endpoint for each table on localhost:8282, customizing...
 ..discovered services: ['newer_service.py', 'new_service.py', 'ontimize_api.py', 'system.py']
-Kafka Consumer not activated
-
-
-sys_info here
-
-Environment Variables...
-.. APILOGICPROJECT_EXTERNAL_HOST = localhost
-.. WG_SQLALCHEMY_DATABASE_URI = sqlite:////opt/projects/wgadmin/db.sqlite
-.. VITE_PORT = 7534
-.. APILOGICSERVER_CHATGPT_AZURE_ENDPOINT = 
-.. APILOGICPROJECT_SWAGGER_PORT = 8282
-.. GH_TOKEN = 
-.. APILOGICPROJECT_PORT = 4444
-.. LOG_DIR = /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logs
-.. GH_ORG = 
-.. APILOGICPROJECT_EXTERNAL_PORT = 8282
-.. SECURITY_ENABLED = false
-.. APILOGICPROJECT_IS_GENAI_DEMO = False
-.. GENAI_LOGIC_PROD = false
-.. PATH = /usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/api_logic_server/bin
-.. APILOGICSERVER_CHATGPT_APIKEY = 
-.. APILOGICSERVER_CHATGPT_AZURE_API_VERSION = 
-.. PROJECT_ID = 01JJ98C7JKSFXQS61M2BT8RCXP
-.. APILOGICPROJECT_HTTP_SCHEME = http
-.. PROJ_ROOT = /opt/projects/by-ulid
-.. APILOGICPROJECT_API_PREFIX = /01JJ98C7JKSFXQS61M2BT8RCXP
-.. URL_ROOT = http://localhost:8282
-.. PWD = /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
-.. VERIFY_RULES = True
-.. PYTHONPATH = /opt/webgenai:/opt/webgenai
-.. APILOGICPROJECT_SWAGGER_HOST = localhost
-.. LOGICBANK_FAILSAFE = true
-.. LC_CTYPE = C.UTF-8
-.. SECRET_KEY = whatnothow
-.. SQLALCHEMY_TRACK_MODIFICATIONS = False
-.. SQLAlCHEMY_ECHO = False
-
-
-flask_app.config: 
-	
-<Config {'DEBUG': None,
-	'TESTING': False,
-	'PROPAGATE_EXCEPTIONS': False,
-	'SECRET_KEY': 'whatnothow',
-	'PERMANENT_SESSION_LIFETIME': datetime.timedelta(days=31),
-	'USE_X_SENDFILE': False,
-	'SERVER_NAME': None,
-	'APPLICATION_ROOT': '/',
-	'SESSION_COOKIE_NAME': 'session',
-	'SESSION_COOKIE_DOMAIN': None,
-	'SESSION_COOKIE_PATH': None,
-	'SESSION_COOKIE_HTTPONLY': True,
-	'SESSION_COOKIE_SECURE': False,
-	'SESSION_COOKIE_SAMESITE': None,
-	'SESSION_REFRESH_EACH_REQUEST': True,
-	'MAX_CONTENT_LENGTH': None,
-	'SEND_FILE_MAX_AGE_DEFAULT': None,
-	'TRAP_BAD_REQUEST_ERRORS': None,
-	'TRAP_HTTP_EXCEPTIONS': False,
-	'EXPLAIN_TEMPLATE_LOADING': False,
-	'PREFERRED_URL_SCHEME': 'http',
-	'TEMPLATES_AUTO_RELOAD': None,
-	'MAX_COOKIE_SIZE': 4093,
-	'API_PREFIX': '/01JJ98C7JKSFXQS61M2BT8RCXP',
-	'FLASK_HOST': '0.0.0.0',
-	'SWAGGER_HOST': 'localhost',
-	'PORT': 4444,
-	'SWAGGER_PORT': '8282',
-	'HTTP_SCHEME': 'http',
-	'KAFKA_PRODUCER': None,
-	'KAFKA_CONSUMER': None,
-	'N8N_PRODUCER': None,
-	'KEYCLOAK_BASE': 'http://localhost:8080/realms/kcals',
-	'KEYCLOAK_REALM': 'kcals',
-	'KEYCLOAK_BASE_URL': 'http://localhost:8080',
-	'KEYCLOAK_CLIENT_ID': 'alsclient',
-	'BACKTIC_AS_QUOTE': False,
-	'ONTIMIZE_SERVICE_TYPE': 'OntimizeEE',
-	'VERBOSE': False,
-	'CREATE_AND_RUN': False,
-	'CREATED_API_PREFIX': '/api',
-	'CREATED_FLASK_HOST': '0.0.0.0',
-	'CREATED_HTTP_SCHEME': 'http',
-	'CREATED_PORT': '5656',
-	'CREATED_SWAGGER_HOST': 'localhost',
-	'CREATED_SWAGGER_PORT': '5656',
-	'FLASK_APP': None,
-	'FLASK_ENV': None,
-	'OPT_LOCKING': 'optional',
-	'SECURITY_ENABLED': False,
-	'SECURITY_PROVIDER': None,
-	'SQLALCHEMY_DATABASE_URI': 'sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/db.sqlite',
-	'SQLALCHEMY_DATABASE_URI_AUTHENTICATION': 'sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/authentication_db.sqlite',
-	'SQLALCHEMY_DATABASE_URI_LANDING': 'sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/db_spa.sqlite',
-	'SQLALCHEMY_TRACK_MODIFICATIONS': False,
-	'EXTERNAL_HOST': 'localhost',
-	'EXTERNAL_PORT': 8282,
-	'IS_GENAI_DEMO': 'False'}>
-
-
-PYTHONPATH..
-../opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
-../opt/webgenai
-../usr/local/lib/python312.zip
-../usr/local/lib/python3.12
-../usr/local/lib/python3.12/lib-dynload
-../usr/local/lib/python3.12/site-packages
-../home/api_logic_server
-../opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
-../home/api_logic_server
-
-sys.prefix (venv): /usr/local
-
-
-hostname=41ba94bbfeea on local_ip=172.18.0.2, IPAddr=172.18.0.2
-
-
-os.getcwd()=/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
-
-

@@ -13,29 +13,13 @@ export const routes: Routes = [
         { path: 'settings', loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule) },
       
     
-        { path: 'Aircraft', loadChildren: () => import('./Aircraft/Aircraft.module').then(m => m.AircraftModule) },
-    
-        { path: 'AircraftMaintenance', loadChildren: () => import('./AircraftMaintenance/AircraftMaintenance.module').then(m => m.AircraftMaintenanceModule) },
-    
-        { path: 'Airline', loadChildren: () => import('./Airline/Airline.module').then(m => m.AirlineModule) },
+        { path: 'Airplane', loadChildren: () => import('./Airplane/Airplane.module').then(m => m.AirplaneModule) },
     
         { path: 'Airport', loadChildren: () => import('./Airport/Airport.module').then(m => m.AirportModule) },
     
-        { path: 'AirportFacility', loadChildren: () => import('./AirportFacility/AirportFacility.module').then(m => m.AirportFacilityModule) },
-    
-        { path: 'Baggage', loadChildren: () => import('./Baggage/Baggage.module').then(m => m.BaggageModule) },
-    
-        { path: 'Booking', loadChildren: () => import('./Booking/Booking.module').then(m => m.BookingModule) },
-    
-        { path: 'CrewMember', loadChildren: () => import('./CrewMember/CrewMember.module').then(m => m.CrewMemberModule) },
-    
-        { path: 'Flight', loadChildren: () => import('./Flight/Flight.module').then(m => m.FlightModule) },
+        { path: 'Luggage', loadChildren: () => import('./Luggage/Luggage.module').then(m => m.LuggageModule) },
     
         { path: 'Passenger', loadChildren: () => import('./Passenger/Passenger.module').then(m => m.PassengerModule) },
-    
-        { path: 'Pilot', loadChildren: () => import('./Pilot/Pilot.module').then(m => m.PilotModule) },
-    
-        { path: 'PilotLicense', loadChildren: () => import('./PilotLicense/PilotLicense.module').then(m => m.PilotLicenseModule) },
     
     ]
   }

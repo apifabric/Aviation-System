@@ -1,28 +1,12 @@
 import { MenuRootItem } from 'ontimize-web-ngx';
 
-import { AircraftCardComponent } from './Aircraft-card/Aircraft-card.component';
-
-import { AircraftMaintenanceCardComponent } from './AircraftMaintenance-card/AircraftMaintenance-card.component';
-
-import { AirlineCardComponent } from './Airline-card/Airline-card.component';
+import { AirplaneCardComponent } from './Airplane-card/Airplane-card.component';
 
 import { AirportCardComponent } from './Airport-card/Airport-card.component';
 
-import { AirportFacilityCardComponent } from './AirportFacility-card/AirportFacility-card.component';
-
-import { BaggageCardComponent } from './Baggage-card/Baggage-card.component';
-
-import { BookingCardComponent } from './Booking-card/Booking-card.component';
-
-import { CrewMemberCardComponent } from './CrewMember-card/CrewMember-card.component';
-
-import { FlightCardComponent } from './Flight-card/Flight-card.component';
+import { LuggageCardComponent } from './Luggage-card/Luggage-card.component';
 
 import { PassengerCardComponent } from './Passenger-card/Passenger-card.component';
-
-import { PilotCardComponent } from './Pilot-card/Pilot-card.component';
-
-import { PilotLicenseCardComponent } from './PilotLicense-card/PilotLicense-card.component';
 
 
 export const MENU_CONFIG: MenuRootItem[] = [
@@ -32,29 +16,13 @@ export const MENU_CONFIG: MenuRootItem[] = [
     id: 'data', name: ' data', icon: 'remove_red_eye', opened: true,
     items: [
     
-        { id: 'Aircraft', name: 'AIRCRAFT', icon: 'view_list', route: '/main/Aircraft' }
-    
-        ,{ id: 'AircraftMaintenance', name: 'AIRCRAFTMAINTENANCE', icon: 'view_list', route: '/main/AircraftMaintenance' }
-    
-        ,{ id: 'Airline', name: 'AIRLINE', icon: 'view_list', route: '/main/Airline' }
+        { id: 'Airplane', name: 'AIRPLANE', icon: 'view_list', route: '/main/Airplane' }
     
         ,{ id: 'Airport', name: 'AIRPORT', icon: 'view_list', route: '/main/Airport' }
     
-        ,{ id: 'AirportFacility', name: 'AIRPORTFACILITY', icon: 'view_list', route: '/main/AirportFacility' }
-    
-        ,{ id: 'Baggage', name: 'BAGGAGE', icon: 'view_list', route: '/main/Baggage' }
-    
-        ,{ id: 'Booking', name: 'BOOKING', icon: 'view_list', route: '/main/Booking' }
-    
-        ,{ id: 'CrewMember', name: 'CREWMEMBER', icon: 'view_list', route: '/main/CrewMember' }
-    
-        ,{ id: 'Flight', name: 'FLIGHT', icon: 'view_list', route: '/main/Flight' }
+        ,{ id: 'Luggage', name: 'LUGGAGE', icon: 'view_list', route: '/main/Luggage' }
     
         ,{ id: 'Passenger', name: 'PASSENGER', icon: 'view_list', route: '/main/Passenger' }
-    
-        ,{ id: 'Pilot', name: 'PILOT', icon: 'view_list', route: '/main/Pilot' }
-    
-        ,{ id: 'PilotLicense', name: 'PILOTLICENSE', icon: 'view_list', route: '/main/PilotLicense' }
     
     ] 
 },
@@ -66,28 +34,12 @@ export const MENU_CONFIG: MenuRootItem[] = [
 
 export const MENU_COMPONENTS = [
 
-    AircraftCardComponent
-
-    ,AircraftMaintenanceCardComponent
-
-    ,AirlineCardComponent
+    AirplaneCardComponent
 
     ,AirportCardComponent
 
-    ,AirportFacilityCardComponent
-
-    ,BaggageCardComponent
-
-    ,BookingCardComponent
-
-    ,CrewMemberCardComponent
-
-    ,FlightCardComponent
+    ,LuggageCardComponent
 
     ,PassengerCardComponent
-
-    ,PilotCardComponent
-
-    ,PilotLicenseCardComponent
 
 ];

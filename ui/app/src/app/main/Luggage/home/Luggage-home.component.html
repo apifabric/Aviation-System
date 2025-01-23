@@ -1,0 +1,42 @@
+<o-form-layout-manager attr="Luggage" mode="tab" title="LUGGAGE">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="LuggageTable" 
+            service="Luggage" 
+            entity="Luggage" 
+            title="LUGGAGE"
+            keys="id"
+            columns="id;passenger_id;weight" 
+            header-actions="R;D"
+            visible-columns="id;passenger_id;weight"  
+            sort-columns="id" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="passenger_id" title="passenger_id">
+    <o-table-cell-renderer-service attr="passenger_id" 
+        service="Passenger" entity="PassengerType" columns="id;name"
+        parent-keys="id:passenger_id"
+        value-column="name" keys="passenger_id"
+        visible-columns="name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column #weight attr="weight" title="weight" type="real" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000.0000" content-align="center"></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form-layout-manager>

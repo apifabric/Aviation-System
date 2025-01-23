@@ -8,9 +8,15 @@ after-insert-mode="new" class="standalone-form-container" (onInsertMode)="onInse
     
         <o-text-input #name attr="name" label=" name*" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
       
-        <o-text-input #location attr="location" label="location" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
-      
         <o-text-input #code attr="code" label="code" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input #city attr="city" label="city" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input #country attr="country" label="country" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-real-input #latitude attr="latitude" label="latitude" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000000" fxFlex="20%" class="form-field"></o-real-input>
+      
+        <o-real-input #longitude attr="longitude" label="longitude" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000000" fxFlex="20%" class="form-field"></o-real-input>
       
         <o-integer-input #id attr="id" label="id" type="integer" editable="no" required="no" ></o-integer-input>
       

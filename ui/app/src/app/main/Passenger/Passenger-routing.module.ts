@@ -14,17 +14,10 @@ const routes: Routes = [
       }
     }
   },{
-    path: ':passenger_id/Baggage', loadChildren: () => import('../Baggage/Baggage.module').then(m => m.BaggageModule),
+    path: ':passenger_id/Luggage', loadChildren: () => import('../Luggage/Luggage.module').then(m => m.LuggageModule),
     data: {
         oPermission: {
-            permissionId: 'Baggage-detail-permissions'
-        }
-    }
-},{
-    path: ':passenger_id/Booking', loadChildren: () => import('../Booking/Booking.module').then(m => m.BookingModule),
-    data: {
-        oPermission: {
-            permissionId: 'Booking-detail-permissions'
+            permissionId: 'Luggage-detail-permissions'
         }
     }
 }

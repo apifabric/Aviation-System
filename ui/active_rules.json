@@ -4,5 +4,11 @@
         "description": "Ensure ticket prices are above a reasonable threshold.",
         "name": "Ticket Price Constraint",
         "use_case": "Ticket's price must be greater than a threshold to be valid."
+    },
+    {
+        "code": "Rule.sum(derive=Passenger.luggage_weight_total, as_sum_of=Luggage.weight)",
+        "description": "Sum total luggage weight for each passenger.",
+        "name": "Passenger Luggage Weight Sum",
+        "use_case": "Keep a running total of luggage weight for each passenger."
     }
 ]

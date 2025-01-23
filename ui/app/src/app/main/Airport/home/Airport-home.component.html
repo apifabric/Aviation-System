@@ -1,4 +1,4 @@
-<o-form-layout-manager attr="Airport" mode="tab" title="AIRPORT">
+<o-form-layout-manager attr="Airport" mode="dialog" title="AIRPORT">
     <div fxFill fxLayout="column" fxLayoutAlign="start">
         <o-table 
             attr="AirportTable" 
@@ -6,9 +6,9 @@
             entity="Airport" 
             title="AIRPORT"
             keys="id"
-            columns="name;location;code;id" 
+            columns="name;code;city;country;latitude;longitude;id" 
             header-actions="R;D"
-            visible-columns="name;location;code;id"  
+            visible-columns="name;code;city;country;latitude;longitude;id"  
             sort-columns="name" 
             query-rows="20" 
             quick-filter="yes"
@@ -24,9 +24,15 @@
             
             <o-table-column #name attr="name" title=" name*" editable="no" required="no" content-align="left"></o-table-column>
             
-            <o-table-column #location attr="location" title="location" editable="no" required="no" content-align="left"></o-table-column>
-            
             <o-table-column #code attr="code" title="code" editable="no" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column #city attr="city" title="city" editable="no" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column #country attr="country" title="country" editable="no" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column #latitude attr="latitude" title="latitude" type="real" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000.0000" content-align="center"></o-table-column>
+            
+            <o-table-column #longitude attr="longitude" title="longitude" type="real" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000.0000" content-align="center"></o-table-column>
             
             <o-table-column #id attr="id" title="id" type="integer" editable="no" required="no" content-align="center"></o-table-column>
             

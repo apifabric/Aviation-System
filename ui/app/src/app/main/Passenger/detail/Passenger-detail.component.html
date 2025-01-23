@@ -17,9 +17,9 @@
       <o-text-input #name attr="name" label=" name*" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
       
       <o-list-picker 
-        attr="flight_id"
-        service="Flight" 
-        entity="FlightType"
+        attr="airplane_id"
+        service="Airplane" 
+        entity="AirplaneType"
         fxFlex="30" 
         query-on-init="no" 
         query-on-bind="yes" 
@@ -29,15 +29,15 @@
         value-column="id" 
         value-column-type="INTEGER"  
         keys="id" 
-        columns="id;flight_id;id" 
-        title="flight_id"
+        columns="id;airplane_id;id" 
+        title="airplane_id"
         visible-columns="id;id" 
         separator=" - " width="680px" class="form-field">
 </o-list-picker>
       
-      <o-text-input #passport_number attr="passport_number" label="passport_number" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      <o-text-input #email attr="email" label="email" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
       
-      <o-date-input #birthdate attr="birthdate" type="date" label="birthdate" enabled="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+      <o-currency-input #luggage_weight_total attr="luggage_weight_total" title="luggage_weight_total" type="currency" editable="no" required="no" currency-symbol="$" currency-symbol-position="left" thousand-separator="," decimal-separator="."></o-currency-input>
       
       <o-integer-input #id attr="id" label="id" type="integer" editable="no" required="no" ></o-integer-input>
       
@@ -46,19 +46,19 @@
       
       <mat-tab-group fxFill>
         
-        <mat-tab label="BAGGAGE-passenger_id">
+        <mat-tab label="LUGGAGE-passenger_id">
     <div layout-padding>
       <o-table 
-        attr="BaggageTable" 
-        service="Baggage" 
-        entity="Baggage" 
+        attr="LuggageTable" 
+        service="Luggage" 
+        entity="Luggage" 
         keys="id"
         parent-keys="passenger_id:id"
-        columns="id;passenger_id;weight;baggage_type"  
+        columns="id;passenger_id;weight"  
         horizontal-scroll="yes"
-        detail-form-route="Baggage" 
-        edit-form-route="Baggage"
-        visible-columns="id;passenger_id;weight;baggage_type"  
+        detail-form-route="Luggage" 
+        edit-form-route="Luggage"
+        visible-columns="id;passenger_id;weight"  
         sort-columns="id" 
         query-rows="25" 
         quick-filter="yes"
@@ -85,66 +85,7 @@
     </o-table-cell-renderer-service>
 </o-table-column>
         
-          <o-table-column #weight attr="weight" title="weight" type="integer" editable="no" required="no" content-align="center"></o-table-column>
-        
-          <o-table-column #baggage_type attr="baggage_type" title="baggage_type" editable="no" required="no" content-align="left"></o-table-column>
-        
-        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
-      </o-table>
-    </div>
-</mat-tab>
-        
-        <mat-tab label="BOOKING-passenger_id">
-    <div layout-padding>
-      <o-table 
-        attr="BookingTable" 
-        service="Booking" 
-        entity="Booking" 
-        keys="id"
-        parent-keys="passenger_id:id"
-        columns="id;flight_id;passenger_id;status;booking_date"  
-        horizontal-scroll="yes"
-        detail-form-route="Booking" 
-        edit-form-route="Booking"
-        visible-columns="id;flight_id;passenger_id;status;booking_date"  
-        sort-columns="id" 
-        query-rows="25" 
-        quick-filter="yes"
-        row-height="medium" 
-        select-all-checkbox="true" 
-        pageable="yes"  
-        auto-adjust="true" 
-        virtual-scroll="yes" 
-        insert-button="yes" 
-        delete-button="yes" 
-        fixed-header="true" 
-        class="vertical-padding-8"
-        edition-mode="dblclick" 
-        horizontal-scroll="yes" class="fill-form">
-        
-          <o-table-column #id attr="id" title=" id*" type="integer" editable="no" required="no" content-align="center"></o-table-column>
-        
-          <o-table-column attr="flight_id" title="flight_id">
-    <o-table-cell-renderer-service attr="flight_id" 
-        service="Flight" entity="FlightType" columns="id;id"
-        parent-keys="id:flight_id"
-        value-column="id" keys="flight_id"
-        visible-columns="id" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
-        
-          <o-table-column attr="passenger_id" title="passenger_id">
-    <o-table-cell-renderer-service attr="passenger_id" 
-        service="Passenger" entity="PassengerType" columns="id;name"
-        parent-keys="id:passenger_id"
-        value-column="name" keys="passenger_id"
-        visible-columns="name" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
-        
-          <o-table-column #status attr="status" title="status" editable="no" required="no" content-align="left"></o-table-column>
-        
-          <o-date-input #booking_date attr="booking_date" type="date" label="booking_date" enabled="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+          <o-table-column #weight attr="weight" title="weight" type="real" min-decimal-digits="2" max-decimal-digits="4" min="0" max="1000000.0000" content-align="center"></o-table-column>
         
         <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
       </o-table>

@@ -13,28 +13,7 @@ const routes: Routes = [
         permissionId: 'Airport-detail-permissions'
       }
     }
-  },{
-    path: ':airport_id/AirportFacility', loadChildren: () => import('../AirportFacility/AirportFacility.module').then(m => m.AirportFacilityModule),
-    data: {
-        oPermission: {
-            permissionId: 'AirportFacility-detail-permissions'
-        }
-    }
-},{
-    path: ':arrival_airport_id/Flight', loadChildren: () => import('../Flight/Flight.module').then(m => m.FlightModule),
-    data: {
-        oPermission: {
-            permissionId: 'Flight-detail-permissions'
-        }
-    }
-},{
-    path: ':departure_airport_id/Flight', loadChildren: () => import('../Flight/Flight.module').then(m => m.FlightModule),
-    data: {
-        oPermission: {
-            permissionId: 'Flight-detail-permissions'
-        }
-    }
-}
+  }
 ];
 
 export const AIRPORT_MODULE_DECLARATIONS = [

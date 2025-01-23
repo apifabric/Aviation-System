@@ -9,7 +9,7 @@
 #    $ cd <your project>
 #    $ sh devops/docker-image/build_image.sh .
 
-projectname="aviationsystemiter1"  # lower case, only
+projectname="aviationsystemiter13"  # lower case, only
 repositoryname="apilogicserver"
 version="1.0.0"
 

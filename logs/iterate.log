@@ -1,14 +1,14 @@
 log: Invoking GenAI..
-Project 01JJ98C7JKSFXQS61M2BT8RCXP not found
-als genai --using /tmp/context_01JJ98C7JKSFXQS61M2BT8RCXP_ick98de --project-name Aviation_System_iter_1 --tables 12  --active-rules
+Project 01JJ9C1WHR0PNH43BQE1R0B3KS not found
+als genai --using /tmp/context_01JJ9C1WHR0PNH43BQE1R0B3KS80captre --project-name Aviation_System_iter_1_3 --tables 12  --active-rules
 create_project: 
-create_project: GenAI [Aviation_System_iter_1] creating microservice...
-create_project: .. .. --using prompt: /tmp/context_01JJ98C7JKSFXQS61M2BT8RCXP_ick98de
-create_project: .. .. in pwd: /tmp/tmp.uGaZDtBmSz
+create_project: GenAI [Aviation_System_iter_1_3] creating microservice...
+create_project: .. .. --using prompt: /tmp/context_01JJ9C1WHR0PNH43BQE1R0B3KS80captre
+create_project: .. .. in pwd: /tmp/tmp.eBwT6bNzmS
 create_project: .. conv[000] processes: 000_you_are.prompt - You are a data modelling exper...
 create_project: .. conv[001] processes: 001_create_db_models.prompt - Use SQLAlchemy to create a sql...
 create_project: .. conv[002] processes: 002_create_db_models.response - { |     "models": [ |         { |   ...
-create_project: .. conv[003] processes: 003_iteration.prompt - update model | <task>Create at l...
+create_project: .. conv[003] processes: 003_iteration.prompt - update model | <task>Update the ...
 create_project: .. iteration inserted: Update the prior response
 create_project: .. inserted explicit test data: Create 4 rows of test data for each table, and follow these guidelines carefully:
 create_project: .. .. conv ignores: create_db_models.py
@@ -19,149 +19,76 @@ create_project: .. .. conv ignores: readme.md
 create_project: .. .. conv ignores: response.json
 create_project: .. saved request: system/genai/temp/request.json
 create_project: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
-create_project: ChatGPT (93 secs) - response at: system/genai/temp/chatgpt_original.response
+create_project: ChatGPT (43 secs) - response at: system/genai/temp/chatgpt_original.response
 create_project: .. call_chatgpt saved response: system/genai/temp/response.json
-create_project: ..cwd: /tmp/tmp.uGaZDtBmSz
+create_project: ..cwd: /tmp/tmp.eBwT6bNzmS
 create_project: 
-create_project: ..docker using default directory: /tmp/tmp.uGaZDtBmSz/Aviation_System_iter_1
+create_project: ..docker using default directory: /tmp/tmp.eBwT6bNzmS/Aviation_System_iter_1_3
 create_project: 
-create_project: add description to Airport: This table stores information about the airports.
+create_project: add description to Airport: Represents an airport entity.
 create_project: Added description to model: Airport: class Airport(Base):
-create_project: """description: This table stores information about the airports."""
+create_project: """description: Represents an airport entity."""
 create_project: __tablename__ = 'airport'
 create_project: id = Column(Integer, primary_key=True, autoincrement=True)
 create_project: name = Column(String)
-create_project: location = Column(String)
-create_project: code = Column(String(3))
+create_project: code = Column(String)
+create_project: city = Column(String)
+create_project: country = Column(String)
+create_project: latitude = Column(DECIMAL)
+create_project: longitude = Column(DECIMAL)
 create_project: 
-create_project: add description to Flight: This table stores information about flights including departure and arrival details.
-create_project: Added description to model: Flight: class Flight(Base):
-create_project: """description: This table stores information about flights including departure and arrival details."""
-create_project: __tablename__ = 'flight'
-create_project: id = Column(Integer, primary_key=True, autoincrement=True)
-create_project: flight_number = Column(String)
-create_project: departure_airport_id = Column(Integer, ForeignKey('airport.id'))
-create_project: arrival_airport_id = Column(Integer, ForeignKey('airport.id'))
-create_project: scheduled_departure = Column(DateTime)
-create_project: scheduled_arrival = Column(DateTime)
-create_project: aircraft_id = Column(Integer, ForeignKey('aircraft.id'))
-create_project: 
-create_project: add description to Aircraft: This table captures details of different aircrafts.
-create_project: Added description to model: Aircraft: class Aircraft(Base):
-create_project: """description: This table captures details of different aircrafts."""
-create_project: __tablename__ = 'aircraft'
+create_project: add description to Airplane: Represents an airplane entity.
+create_project: Added description to model: Airplane: class Airplane(Base):
+create_project: """description: Represents an airplane entity."""
+create_project: __tablename__ = 'airplane'
 create_project: id = Column(Integer, primary_key=True, autoincrement=True)
 create_project: model = Column(String)
 create_project: seating_capacity = Column(Integer)
+create_project: passenger_count = Column(Integer)
 create_project: 
-create_project: add description to Passenger: This table records the details of passengers.
+create_project: add description to Passenger: Represents a passenger entity with a link to airplane.
 create_project: Added description to model: Passenger: class Passenger(Base):
-create_project: """description: This table records the details of passengers."""
+create_project: """description: Represents a passenger entity with a link to airplane."""
 create_project: __tablename__ = 'passenger'
 create_project: id = Column(Integer, primary_key=True, autoincrement=True)
 create_project: name = Column(String)
-create_project: passport_number = Column(String)
-create_project: birthdate = Column(Date)
-create_project: flight_id = Column(Integer, ForeignKey('flight.id'))
+create_project: email = Column(String)
+create_project: luggage_weight_total = Column(DECIMAL)
+create_project: airplane_id = Column(Integer, ForeignKey('airplane.id'))
 create_project: 
-create_project: add description to Pilot: This table contains information about pilots.
-create_project: Added description to model: Pilot: class Pilot(Base):
-create_project: """description: This table contains information about pilots."""
-create_project: __tablename__ = 'pilot'
-create_project: id = Column(Integer, primary_key=True, autoincrement=True)
-create_project: name = Column(String)
-create_project: license_number = Column(String)
-create_project: years_of_experience = Column(Integer)
-create_project: 
-create_project: add description to CrewMember: This table consists of crew members working on flights.
-create_project: Added description to model: CrewMember: class CrewMember(Base):
-create_project: """description: This table consists of crew members working on flights."""
-create_project: __tablename__ = 'crew_member'
-create_project: id = Column(Integer, primary_key=True, autoincrement=True)
-create_project: name = Column(String)
-create_project: position = Column(String)
-create_project: flight_id = Column(Integer, ForeignKey('flight.id'))
-create_project: 
-create_project: add description to Booking: This table stores booking information.
-create_project: Added description to model: Booking: class Booking(Base):
-create_project: """description: This table stores booking information."""
-create_project: __tablename__ = 'booking'
+create_project: add description to Luggage: Represents luggage linked to a passenger.
+create_project: Added description to model: Luggage: class Luggage(Base):
+create_project: """description: Represents luggage linked to a passenger."""
+create_project: __tablename__ = 'luggage'
 create_project: id = Column(Integer, primary_key=True, autoincrement=True)
 create_project: passenger_id = Column(Integer, ForeignKey('passenger.id'))
-create_project: flight_id = Column(Integer, ForeignKey('flight.id'))
-create_project: status = Column(String)
-create_project: booking_date = Column(Date)
+create_project: weight = Column(DECIMAL)
 create_project: 
-create_project: add description to Baggage: This table records baggage details for passengers.
-create_project: Added description to model: Baggage: class Baggage(Base):
-create_project: """description: This table records baggage details for passengers."""
-create_project: __tablename__ = 'baggage'
-create_project: id = Column(Integer, primary_key=True, autoincrement=True)
-create_project: passenger_id = Column(Integer, ForeignKey('passenger.id'))
-create_project: weight = Column(Integer)
-create_project: baggage_type = Column(String)
-create_project: 
-create_project: add description to Airline: This table provides details about different airlines.
-create_project: Added description to model: Airline: class Airline(Base):
-create_project: """description: This table provides details about different airlines."""
-create_project: __tablename__ = 'airline'
-create_project: id = Column(Integer, primary_key=True, autoincrement=True)
-create_project: name = Column(String)
-create_project: code = Column(String(3))
-create_project: 
-create_project: add description to PilotLicense: This table contains license details for pilots.
-create_project: Added description to model: PilotLicense: class PilotLicense(Base):
-create_project: """description: This table contains license details for pilots."""
-create_project: __tablename__ = 'pilot_license'
-create_project: id = Column(Integer, primary_key=True, autoincrement=True)
-create_project: pilot_id = Column(Integer, ForeignKey('pilot.id'))
-create_project: license_type = Column(String)
-create_project: expiry_date = Column(Date)
-create_project: 
-create_project: add description to AircraftMaintenance: This table logs maintenance details of aircraft.
-create_project: Added description to model: AircraftMaintenance: class AircraftMaintenance(Base):
-create_project: """description: This table logs maintenance details of aircraft."""
-create_project: __tablename__ = 'aircraft_maintenance'
-create_project: id = Column(Integer, primary_key=True, autoincrement=True)
-create_project: aircraft_id = Column(Integer, ForeignKey('aircraft.id'))
-create_project: date_of_maintenance = Column(Date)
-create_project: next_due_date = Column(Date)
-create_project: remarks = Column(String)
-create_project: 
-create_project: add description to AirportFacility: Records various facilities available at airpots.
-create_project: Added description to model: AirportFacility: class AirportFacility(Base):
-create_project: """description: Records various facilities available at airpots."""
-create_project: __tablename__ = 'airport_facility'
-create_project: id = Column(Integer, primary_key=True, autoincrement=True)
-create_project: airport_id = Column(Integer, ForeignKey('airport.id'))
-create_project: facility_type = Column(String)
-create_project: description = Column(String)
-create_project: 
-create_project: .... test_data_rows: 48
+create_project: .... test_data_rows: 16
 create_project: .. code for db creation and test data: system/genai/temp/create_db_models.py
-create_project: .. saving work files to: system/genai/temp/Aviation_System_iter_1
-create_project: save_prompt_messages_to_system_genai_temp_project() - /tmp/tmp.uGaZDtBmSz/system/genai/temp/Aviation_System_iter_1
+create_project: .. saving work files to: system/genai/temp/Aviation_System_iter_1_3
+create_project: save_prompt_messages_to_system_genai_temp_project() - /tmp/tmp.eBwT6bNzmS/system/genai/temp/Aviation_System_iter_1_3
 create_project: .. saving[000_you_are.prompt]  - You are a data modelling exper...
 create_project: .. saving[001_create_db_models.prompt]  - Use SQLAlchemy to create a sql...
 create_project: .. saving[002_logic_training.prompt]  - Here is the simplified API for...
 create_project: .. saving[003_iteration.prompt]  - Update the prior response - be...
 create_project: .. saving response [004_create_db_models.response]  - Update the prior response - be...
-create_project: ..cwd: /tmp/tmp.uGaZDtBmSz
+create_project: ..cwd: /tmp/tmp.eBwT6bNzmS
 create_project: 
-create_project: ..docker using default directory: /tmp/tmp.uGaZDtBmSz/Aviation_System_iter_1
+create_project: ..docker using default directory: /tmp/tmp.eBwT6bNzmS/Aviation_System_iter_1_3
 create_project: 
-create_project: .. fixed hallucination/indent:     Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
-create_project: .. found class: Flight in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
-create_project: .. no classes found in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
-create_project: .. no classes found in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
-create_project: .. no classes found in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
-create_project: .. found class: Passenger in: Rule.count(derive=Flight.passenger_count, as_count_of=Passenger)
-create_project: .. fixed hallucination/indent:     Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
-create_project: .. no classes found in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
-create_project: .. no classes found in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
-create_project: .. found class: Flight in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
-create_project: .. no classes found in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
-create_project: .. no classes found in: Rule.constraint(validate=Flight, as_condition=lambda row: row.passenger_count <= row.aircraft.seating_capacity, error_msg="Flight passenger count ({row.passenger_count}) exceeds aircraft seating capacity ({row.aircraft.seating_capacity})")
+create_project: .. fixed hallucination/indent:     Rule.sum(derive=Passenger.luggage_weight_total, as_sum_of=Luggage.weight)
+create_project: .. found class: Passenger in: Rule.sum(derive=Passenger.luggage_weight_total, as_sum_of=Luggage.weight)
+create_project: .. no classes found in: Rule.sum(derive=Passenger.luggage_weight_total, as_sum_of=Luggage.weight)
+create_project: .. no classes found in: Rule.sum(derive=Passenger.luggage_weight_total, as_sum_of=Luggage.weight)
+create_project: .. found class: Luggage in: Rule.sum(derive=Passenger.luggage_weight_total, as_sum_of=Luggage.weight)
+create_project: .. no classes found in: Rule.sum(derive=Passenger.luggage_weight_total, as_sum_of=Luggage.weight)
+create_project: .. fixed hallucination/indent:     Rule.constraint(validate=Airplane, as_condition=lambda row: row.passenger_count <= row.seating_capacity, error_msg="Airplane value total ({row.passenger_count}) exceeds limit ({row.seating_capacity})")
+create_project: .. no classes found in: Rule.constraint(validate=Airplane, as_condition=lambda row: row.passenger_count <= row.seating_capacity, error_msg="Airplane value total ({row.passenger_count}) exceeds limit ({row.seating_capacity})")
+create_project: .. no classes found in: Rule.constraint(validate=Airplane, as_condition=lambda row: row.passenger_count <= row.seating_capacity, error_msg="Airplane value total ({row.passenger_count}) exceeds limit ({row.seating_capacity})")
+create_project: .. found class: Airplane in: Rule.constraint(validate=Airplane, as_condition=lambda row: row.passenger_count <= row.seating_capacity, error_msg="Airplane value total ({row.passenger_count}) exceeds limit ({row.seating_capacity})")
+create_project: .. no classes found in: Rule.constraint(validate=Airplane, as_condition=lambda row: row.passenger_count <= row.seating_capacity, error_msg="Airplane value total ({row.passenger_count}) exceeds limit ({row.seating_capacity})")
+create_project: .. no classes found in: Rule.constraint(validate=Airplane, as_condition=lambda row: row.passenger_count <= row.seating_capacity, error_msg="Airplane value total ({row.passenger_count}) exceeds limit ({row.seating_capacity})")
 create_project: 
 create_project: Project created.  Next steps:
 create_project: 
@@ -169,18 +96,18 @@ create_project: $ ApiLogicServer run      # Run created API and Admin App, or
 create_project: 
 create_project: Customize using IDE on local machine:
 create_project: exit     # exit the Docker container
-create_project: code <local machine directory for: Aviation_System_iter_1>  # e.g., open VSCode on created project
+create_project: code <local machine directory for: Aviation_System_iter_1_3>  # e.g., open VSCode on created project
 create_project: 
 create_project: 
-create_project: GENAI (95 secs) successful on try 1
+create_project: GENAI (46 secs) successful on try 1
 create_project: 
 create_project: 
 create_project: Welcome to API Logic Server, 14.02.23
 create_project: 
 create_project: creating in manager: sqlite:///system/genai/temp/create_db_models.sqlite
 create_project: 
-Waiting for background tasks to complete.. (in /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP)
-Waiting for background tasks to complete.. (in /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP)
+Waiting for background tasks to complete.. (in /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS)
+Waiting for background tasks to complete.. (in /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS)
 [1]   Running                 dbml-renderer -i docs/db.dbml -o ui/dber.svg &
 [2]-  Running                 ( cd /opt/webgenai; python database/manager.py -p "${proj_id}" --verify ) &
 [3]+  Running                 ( cd /opt/webgenai; python database/manager.py -jp "${proj_id}" > ui/project.json ) &

@@ -1,25 +1,28 @@
 INFO:response2code:Loading GPT response from system/genai/temp/response.json
 INFO:response2code:Successfully wrote test data code to database/test_data/test_data_code.py
 ..  logic_logger: <Logger logic_logger (DEBUG)>
-..  db_url: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/test_data/db.sqlite
-..  cwd: /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
+..  db_url: sqlite:////opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/database/test_data/db.sqlite
+..  cwd: /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS
 ..  python_loc: /usr/local/bin/python
 ..  test_data_loader version: 1.1
 config.py - security disabled
-config.py - SQLALCHEMY_DATABASE_URI_AUTHENTICATION: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/authentication_db.sqlite
+config.py - SQLALCHEMY_DATABASE_URI_AUTHENTICATION: sqlite:////opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/database/authentication_db.sqlite
 
-Loading rules from /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules
-01JJ98C974B461Y5G2H0AVHFDC rule file: logic/wg_rules/Ticket_Price_Constraint.py
-[32mLoading Rule Module Ticket_Price_Constraint 01JJ98C974B461Y5G2H0AVHFDC [0m
+config.py - SQLALCHEMY_DATABASE_URI_LANDING: sqlite:////opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/database/db_spa.sqlite
+
+Loading rules from /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/wg_rules
+01JJ9C1Y7AT1YKK2R2P7WHBKBJ rule file: logic/wg_rules/Ticket_Price_Constraint.py
+01JJ9C1YCMGESPW2WF2KWA0JHX rule file: logic/wg_rules/Passenger_Luggage_Weight_Sum.py
+[32mLoading Rule Module Ticket_Price_Constraint 01JJ9C1Y7AT1YKK2R2P7WHBKBJ [0m
 name 'Ticket' is not defined
 Traceback (most recent call last):
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 174, in load_active_rules
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/load_verify_rules.py", line 174, in load_active_rules
     rule_module.init_rule()
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
     Rule.constraint(validate=Ticket,
                              ^^^^^^
 NameError: name 'Ticket' is not defined
-[31mFailed to load active rule 01JJ98C974B461Y5G2H0AVHFDC Rule.constraint(validate=Ticket,
+[31mFailed to load active rule 01JJ9C1Y7AT1YKK2R2P7WHBKBJ Rule.constraint(validate=Ticket,
                 as_condition=lambda row: row.price > 0,
                 error_msg="Ticket price ({row.price}) must be greater than zero") [0m
 Traceback (most recent call last):
@@ -143,11 +146,11 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 3175, in _resolve_column
     raise exc.NoReferencedTableError(
 sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'projects.user_id' could not find table 'users' with which to generate a foreign key to target column 'id'
-Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.
+Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ9C1Y7AT1YKK2R2P7WHBKBJ', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.
 Traceback (most recent call last):
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 174, in load_active_rules
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/load_verify_rules.py", line 174, in load_active_rules
     rule_module.init_rule()
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/wg_rules/Ticket_Price_Constraint.py", line 6, in init_rule
     Rule.constraint(validate=Ticket,
                              ^^^^^^
 NameError: name 'Ticket' is not defined
@@ -155,22 +158,22 @@ NameError: name 'Ticket' is not defined
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 209, in load_verify_rules
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/load_verify_rules.py", line 209, in load_verify_rules
     load_active_rules(rule_code_dir, rules)
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 178, in load_active_rules
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/load_verify_rules.py", line 178, in load_active_rules
     set_rule_error(rule["id"], f"{type(exc).__name__}: {exc}")
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic/load_verify_rules.py", line 60, in set_rule_error
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/logic/load_verify_rules.py", line 60, in set_rule_error
     subprocess.check_output([
   File "/usr/local/lib/python3.12/subprocess.py", line 466, in check_output
     return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/usr/local/lib/python3.12/subprocess.py", line 571, in run
     raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.
-[31mFailed to load active exported rules: Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ98C974B461Y5G2H0AVHFDC', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.[0m
+subprocess.CalledProcessError: Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ9C1Y7AT1YKK2R2P7WHBKBJ', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.
+[31mFailed to load active exported rules: Command '['python', '/opt/webgenai/database/manager.py', '-R', '01JJ9C1Y7AT1YKK2R2P7WHBKBJ', '--rule-error', "NameError: name 'Ticket' is not defined"]' returned non-zero exit status 1.[0m
 
 The following rules have been loaded
-Rule Bank[0x7d3f901ad2b0] (loaded 2025-01-23 09:39:12.353384)
+Rule Bank[0x7fc34ad5db50] (loaded 2025-01-23 10:42:41.515065)
 
 The following attributes have been referenced
 
@@ -179,16 +182,16 @@ Error creating engine: LBActivateException:
 []
 LogicBank Activation Error
 *** Models.py Using TestBase ***
-..  db_url: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/test_data/db.sqlite
-..  cwd: /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
+..  db_url: sqlite:////opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/database/test_data/db.sqlite
+..  cwd: /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS
 ..  python_loc: /usr/local/bin/python
 ..  test_data_loader version: 1.1
 Error creating engine: LBActivateException: 
 [NameError("name 'Ticket' is not defined")]
 []
 LogicBank Activation Error
-..  db_url: sqlite:////opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/test_data/db.sqlite
-..  cwd: /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP
+..  db_url: sqlite:////opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/database/test_data/db.sqlite
+..  cwd: /opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS
 ..  python_loc: /usr/local/bin/python
 ..  test_data_loader version: 1.1
 Error creating engine: LBActivateException: 
@@ -196,7 +199,7 @@ Error creating engine: LBActivateException:
 []
 LogicBank Activation Error
 Traceback (most recent call last):
-  File "/opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database/test_data/test_data_code.py", line 63, in <module>
+  File "/opt/projects/by-ulid/01JJ9C1WHR0PNH43BQE1R0B3KS/database/test_data/test_data_code.py", line 63, in <module>
     LogicBank.activate(session=session, activator=declare_logic.declare_logic)
   File "/usr/local/lib/python3.12/site-packages/logic_bank/logic_bank.py", line 149, in activate
     raise LBActivateException(rule_bank.invalid_rules, missing_attributes)

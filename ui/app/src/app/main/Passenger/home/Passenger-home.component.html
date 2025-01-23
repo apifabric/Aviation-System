@@ -6,9 +6,9 @@
             entity="Passenger" 
             title="PASSENGER"
             keys="id"
-            columns="name;flight_id;passport_number;birthdate;id" 
+            columns="name;airplane_id;email;luggage_weight_total;id" 
             header-actions="R;D"
-            visible-columns="name;flight_id;passport_number;birthdate;id"  
+            visible-columns="name;airplane_id;email;luggage_weight_total;id"  
             sort-columns="name" 
             query-rows="20" 
             quick-filter="yes"
@@ -24,18 +24,18 @@
             
             <o-table-column #name attr="name" title=" name*" editable="no" required="no" content-align="left"></o-table-column>
             
-            <o-table-column attr="flight_id" title="flight_id">
-    <o-table-cell-renderer-service attr="flight_id" 
-        service="Flight" entity="FlightType" columns="id;id"
-        parent-keys="id:flight_id"
-        value-column="id" keys="flight_id"
+            <o-table-column attr="airplane_id" title="airplane_id">
+    <o-table-cell-renderer-service attr="airplane_id" 
+        service="Airplane" entity="AirplaneType" columns="id;id"
+        parent-keys="id:airplane_id"
+        value-column="id" keys="airplane_id"
         visible-columns="id" separator=" - " width="680px">
     </o-table-cell-renderer-service>
 </o-table-column>
             
-            <o-table-column #passport_number attr="passport_number" title="passport_number" editable="no" required="no" content-align="left"></o-table-column>
+            <o-table-column #email attr="email" title="email" editable="no" required="no" content-align="left"></o-table-column>
             
-            <o-date-input #birthdate attr="birthdate" type="date" label="birthdate" enabled="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+            <o-table-column #luggage_weight_total attr="luggage_weight_total" title="luggage_weight_total" type="currency" editable="no" required="no" currency-symbol="$" currency-symbol-position="left" thousand-separator=","decimal-separator="."></o-table-column>
             
             <o-table-column #id attr="id" title="id" type="integer" editable="no" required="no" content-align="center"></o-table-column>
             
