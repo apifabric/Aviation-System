@@ -1,0 +1,324 @@
+about:
+  date: January 23, 2025 09:34:15
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 10
+  number_tables: 12
+info_toggle_checked: true
+resources:
+  Airplane:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: manufacturer_id
+    - name: airplane_model
+    - name: airline
+    - name: capacity
+    description: Represents the airplane details with attributes like model, airline,
+      capacity, and manufacturer link.
+    info_list: Represents the airplane details with attributes like model, airline,
+      capacity, and manufacturer link.
+    tab_groups:
+    - direction: toone
+      fks:
+      - manufacturer_id
+      name: manufacturer
+      resource: Manufacturer
+    type: Airplane
+    user_key: id
+  Airport:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: location
+    - name: construction_year
+    - name: capacity
+    - name: id
+    description: This class represents an airport entity that includes basic attributes
+      like name, location, construction year, and capacity.
+    info_list: This class represents an airport entity that includes basic attributes
+      like name, location, construction year, and capacity.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - airport_id
+      name: FlightList
+      resource: Flight
+    - direction: tomany
+      fks:
+      - airport_id
+      name: GateList
+      resource: Gate
+    - direction: tomany
+      fks:
+      - airport_id
+      name: StaffList
+      resource: Staff
+    type: Airport
+    user_key: name
+  Assignment:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: flight_id
+    - name: pilot_id
+    description: An assignment connecting pilots to their flights.
+    info_list: An assignment connecting pilots to their flights.
+    tab_groups:
+    - direction: toone
+      fks:
+      - flight_id
+      name: flight
+      resource: Flight
+    - direction: toone
+      fks:
+      - pilot_id
+      name: pilot
+      resource: Pilot
+    type: Assignment
+    user_key: id
+  Booking:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: ticket_id
+    - name: booking_number
+    - name: booking_date
+      type: DATE
+    description: Holds details about bookings connecting to tickets.
+    info_list: Holds details about bookings connecting to tickets.
+    tab_groups:
+    - direction: toone
+      fks:
+      - ticket_id
+      name: ticket
+      resource: Ticket
+    type: Booking
+    user_key: id
+  Flight:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: airport_id
+    - name: flight_number
+    - name: departure_time
+      type: DATETIME
+    - name: arrival_time
+      type: DATETIME
+    description: This class represents a flight entity, holding details about flight
+      number, departure and arrival times, and the related airport.
+    info_list: This class represents a flight entity, holding details about flight
+      number, departure and arrival times, and the related airport.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - flight_id
+      name: AssignmentList
+      resource: Assignment
+    - direction: tomany
+      fks:
+      - flight_id
+      name: TicketList
+      resource: Ticket
+    - direction: toone
+      fks:
+      - airport_id
+      name: airport
+      resource: Airport
+    type: Flight
+    user_key: id
+  Gate:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: airport_id
+    - name: gate_number
+    description: Details for gates at the airport and their location.
+    info_list: Details for gates at the airport and their location.
+    tab_groups:
+    - direction: toone
+      fks:
+      - airport_id
+      name: airport
+      resource: Airport
+    type: Gate
+    user_key: id
+  Luggage:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: passenger_id
+    - name: weight
+    description: Represents luggage details associated with passengers.
+    info_list: Represents luggage details associated with passengers.
+    tab_groups:
+    - direction: toone
+      fks:
+      - passenger_id
+      name: passenger
+      resource: Passenger
+    type: Luggage
+    user_key: id
+  Manufacturer:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: country
+    - name: id
+    description: Manufacturer details, including the name and originating country.
+    info_list: Manufacturer details, including the name and originating country.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - manufacturer_id
+      name: AirplaneList
+      resource: Airplane
+    type: Manufacturer
+    user_key: name
+  Passenger:
+    attributes:
+    - label: ' first_name*'
+      name: first_name
+      search: true
+      sort: true
+    - name: last_name
+    - name: passport_number
+    - name: id
+    description: Basic passenger data including name and passport number.
+    info_list: Basic passenger data including name and passport number.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - passenger_id
+      name: LuggageList
+      resource: Luggage
+    - direction: tomany
+      fks:
+      - passenger_id
+      name: TicketList
+      resource: Ticket
+    type: Passenger
+    user_key: first_name
+  Pilot:
+    attributes:
+    - label: ' first_name*'
+      name: first_name
+      search: true
+      sort: true
+    - name: last_name
+    - name: license_number
+    - name: id
+    description: Represents a pilot entity with basic information such as first and
+      last name, and license number.
+    info_list: Represents a pilot entity with basic information such as first and
+      last name, and license number.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - pilot_id
+      name: AssignmentList
+      resource: Assignment
+    type: Pilot
+    user_key: first_name
+  Staff:
+    attributes:
+    - label: ' first_name*'
+      name: first_name
+      search: true
+      sort: true
+    - name: airport_id
+    - name: last_name
+    - name: role
+    - name: id
+    description: Represents various staff members, their roles, and assigned airports.
+    info_list: Represents various staff members, their roles, and assigned airports.
+    tab_groups:
+    - direction: toone
+      fks:
+      - airport_id
+      name: airport
+      resource: Airport
+    type: Staff
+    user_key: first_name
+  Ticket:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: flight_id
+    - name: passenger_id
+    - name: ticket_number
+    - name: price
+    description: Information pertaining to a ticket entity including price, and link
+      to passengers and flights.
+    info_list: Information pertaining to a ticket entity including price, and link
+      to passengers and flights.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - ticket_id
+      name: BookingList
+      resource: Booking
+    - direction: toone
+      fks:
+      - flight_id
+      name: flight
+      resource: Flight
+    - direction: toone
+      fks:
+      - passenger_id
+      name: passenger
+      resource: Passenger
+    type: Ticket
+    user_key: id
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: 'false'
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    row_height: small,
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'

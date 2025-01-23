@@ -1,0 +1,209 @@
+"models":
+- "classname": |-
+    Airport
+  "code": |-
+    class Airport(Base):
+        __tablename__ = 'airport'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        name = Column(String)
+        location = Column(String)
+        construction_year = Column(Integer)
+        capacity = Column(Integer)
+  "description": |-
+    This class represents an airport entity that includes basic attributes like name, location, construction year, and capacity.
+  "name": |-
+    airport
+- "classname": |-
+    Flight
+  "code": |-
+    class Flight(Base):
+        __tablename__ = 'flight'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        flight_number = Column(String)
+        departure_time = Column(DateTime)
+        arrival_time = Column(DateTime)
+        airport_id = Column(Integer, ForeignKey('airport.id'))
+  "description": |-
+    This class represents a flight entity, holding details about flight number, departure and arrival times, and the related airport.
+  "name": |-
+    flight
+- "classname": |-
+    Airplane
+  "code": |-
+    class Airplane(Base):
+        __tablename__ = 'airplane'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        airplane_model = Column(String)
+        airline = Column(String)
+        capacity = Column(Integer)
+        manufacturer_id = Column(Integer, ForeignKey('manufacturer.id'))
+  "description": |-
+    Represents the airplane details with attributes like model, airline, capacity, and manufacturer link.
+  "name": |-
+    airplane
+- "classname": |-
+    Manufacturer
+  "code": |-
+    class Manufacturer(Base):
+        __tablename__ = 'manufacturer'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        name = Column(String)
+        country = Column(String)
+  "description": |-
+    Manufacturer details, including the name and originating country.
+  "name": |-
+    manufacturer
+- "classname": |-
+    Pilot
+  "code": |-
+    class Pilot(Base):
+        __tablename__ = 'pilot'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        first_name = Column(String)
+        last_name = Column(String)
+        license_number = Column(String)
+  "description": |-
+    Represents a pilot entity with basic information such as first and last name, and license number.
+  "name": |-
+    pilot
+- "classname": |-
+    Assignment
+  "code": |-
+    class Assignment(Base):
+        __tablename__ = 'assignment'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        pilot_id = Column(Integer, ForeignKey('pilot.id'))
+        flight_id = Column(Integer, ForeignKey('flight.id'))
+  "description": |-
+    An assignment connecting pilots to their flights.
+  "name": |-
+    assignment
+- "classname": |-
+    Staff
+  "code": |-
+    class Staff(Base):
+        __tablename__ = 'staff'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        first_name = Column(String)
+        last_name = Column(String)
+        role = Column(String)
+        airport_id = Column(Integer, ForeignKey('airport.id'))
+  "description": |-
+    Represents various staff members, their roles, and assigned airports.
+  "name": |-
+    staff
+- "classname": |-
+    Passenger
+  "code": |-
+    class Passenger(Base):
+        __tablename__ = 'passenger'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        first_name = Column(String)
+        last_name = Column(String)
+        passport_number = Column(String)
+  "description": |-
+    Basic passenger data including name and passport number.
+  "name": |-
+    passenger
+- "classname": |-
+    Ticket
+  "code": |-
+    class Ticket(Base):
+        __tablename__ = 'ticket'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        ticket_number = Column(String)
+        price = Column(Integer)
+        passenger_id = Column(Integer, ForeignKey('passenger.id'))
+        flight_id = Column(Integer, ForeignKey('flight.id'))
+  "description": |-
+    Information pertaining to a ticket entity including price, and link to passengers and flights.
+  "name": |-
+    ticket
+- "classname": |-
+    Booking
+  "code": |-
+    class Booking(Base):
+        __tablename__ = 'booking'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        booking_number = Column(String)
+        booking_date = Column(Date)
+        ticket_id = Column(Integer, ForeignKey('ticket.id'))
+  "description": |-
+    Holds details about bookings connecting to tickets.
+  "name": |-
+    booking
+- "classname": |-
+    Luggage
+  "code": |-
+    class Luggage(Base):
+        __tablename__ = 'luggage'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        weight = Column(Integer)
+        passenger_id = Column(Integer, ForeignKey('passenger.id'))
+  "description": |-
+    Represents luggage details associated with passengers.
+  "name": |-
+    luggage
+- "classname": |-
+    Gate
+  "code": |-
+    class Gate(Base):
+        __tablename__ = 'gate'
+
+        id = Column(Integer, primary_key=True, autoincrement=True)
+        gate_number = Column(String)
+        airport_id = Column(Integer, ForeignKey('airport.id'))
+  "description": |-
+    Details for gates at the airport and their location.
+  "name": |-
+    gate
+"name": |-
+  Aviation System
+"rules": []
+"test_data": |-
+  The test data rows for each table represent instances in the Python code with attributes filled. These objects maintain consistency with the attributes defined in the sqlalchemy models.
+"test_data_rows":
+- "code": |-
+    airport1 = Airport(name="JFK International", location="New York", construction_year=1948, capacity=60000)
+  "test_data_row_variable": |-
+    airport1
+- "code": |-
+    airport2 = Airport(name="Heathrow", location="London", construction_year=1946, capacity=80000)
+  "test_data_row_variable": |-
+    airport2
+- "code": |-
+    airport3 = Airport(name="Changi Airport", location="Singapore", construction_year=1981, capacity=85300)
+  "test_data_row_variable": |-
+    airport3
+- "code": |-
+    airport4 = Airport(name="Haneda Airport", location="Tokyo", construction_year=1931, capacity=85000)
+  "test_data_row_variable": |-
+    airport4
+- "code": |-
+    flight1 = Flight(flight_number="AA101", departure_time=datetime(2023, 11, 25, 15, 30), arrival_time=datetime(2023, 11, 25, 18, 30), airport_id=1)
+  "test_data_row_variable": |-
+    flight1
+- "code": |-
+    flight2 = Flight(flight_number="BA202", departure_time=datetime(2023, 11, 25, 8, 0), arrival_time=datetime(2023, 11, 25, 10, 30), airport_id=2)
+  "test_data_row_variable": |-
+    flight2
+- "code": |-
+    flight3 = Flight(flight_number="SQ303", departure_time=datetime(2023, 11, 26, 11, 0), arrival_time=datetime(2023, 11, 26, 15, 0), airport_id=3)
+  "test_data_row_variable": |-
+    flight3
+- "code": |-
+    flight4 = Flight(flight_number="JL404", departure_time=datetime(2023, 11, 26, 12, 30), arrival_time=datetime(2023, 11, 26, 16, 30), airport_id=4)
+  "test_data_row_variable": |-
+    flight4
+"test_data_sqlite": ""
