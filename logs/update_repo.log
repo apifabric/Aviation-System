@@ -1,0 +1,16 @@
++ [[ -z 01JJ985D42M41MD4F79K9P5C3W ]]
++ [[ -z /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP ]]
++ git config --global user.email info@apifabric.ai
++ git config --global user.name ApiFabric
+++ mktemp -d --suffix=-git
++ tmp_dir=/tmp/tmp.e5nR8gTJtx-git
++ cd /tmp/tmp.e5nR8gTJtx-git
+++ manager -jp 01JJ985D42M41MD4F79K9P5C3W
+++ PYTHONPATH=/opt/webgenai
+++ python /opt/webgenai/database/manager.py -jp 01JJ985D42M41MD4F79K9P5C3W
+++ jq -r .repository
++ repository=https://github.com/apifabric/Aviation-System.git
++ [[ -z https://github.com/apifabric/Aviation-System.git ]]
++ git clone https://github.com/apifabric/Aviation-System.git .
+Cloning into '.'...
++ cp -rf /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/alp_verify_only.py /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/api /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/api_logic_server_run.py /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/config /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/database /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/devops /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/docs /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/genai /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/grun.sh /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/images /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/integration /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logic /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/logs /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/readme.md /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/readme_standard.md /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/requirements.txt /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/run.ps1 /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/run.sh /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/security /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/static /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/style-guide.yaml /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/system /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/test /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/ui /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/venv_setup /opt/projects/by-ulid/01JJ98C7JKSFXQS61M2BT8RCXP/.gitignore .
